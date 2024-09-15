@@ -1,0 +1,20 @@
+.tappable
+  position: relative
+  isolation: isolate
+  cursor: pointer
+  transition: opacity .15s ease-out
+
+  &[readonly]
+    cursor: default
+    pointer-events: visible
+
+  &[disabled]
+    cursor: default
+    opacity: .35
+
+  &_opacity:active,
+  &--ios:active
+    opacity: .65
+
+    @media (hover: hover) and (pointer: fine)
+      opacity: .85

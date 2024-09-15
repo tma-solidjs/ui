@@ -1,0 +1,93 @@
+.switch
+  position: relative
+  overflow: hidden
+
+  display: flex
+  align-items: center
+  cursor: pointer
+
+  width: 52px
+  height: 32px
+
+  border-radius: 16px
+
+  &--disabled
+    cursor: default
+    opacity: .4
+
+  &::before
+    position: absolute
+    content: ''
+    inset: 0
+
+    background: var(--secondary_bg_color)
+
+  &--base
+    & .switch__input:checked + .switch__control::after
+      width: 24px
+      height: 24px
+      background: var(--white)
+      transform: translateX(16px) translateY(-50%)
+
+    & .switch__control
+      &::before
+        border-radius: 16px
+        border: 3px solid var(--secondary_hint_color)
+
+      &::after
+        width: 16px
+        height: 16px
+
+        margin-left: 8px
+        background: var(--secondary_hint_color)
+
+  &__control
+    &::after
+      position: absolute
+      content: ''
+
+      top: 50%
+      transform: translateY(-50%)
+
+      border-radius: 50%
+
+    &::before
+      position: absolute
+      content: ''
+      inset: 0
+
+      background: var(--tgui--secondary_bg_color)
+
+  &--ios
+    & .switch__control::after
+      width: 28px
+      height: 28px
+
+      margin-left: 2px
+      box-shadow: 0 3px 1px 0 rgba(0, 0, 0, .06), 0 3px 8px 0 rgba(0, 0, 0, .15), 0 0 0 1px rgba(0, 0, 0, .04)
+      background: var(--white)
+
+  &__input
+    &:checked
+      & + .switch__control
+        &::before
+          border-color: var(--link_color)
+          background-color: var(--link_color)
+
+        &::after
+          transform: translateX(20px) translateY(-50%)
+
+  @media (prefers-reduced-motion: no-preference)
+    &__control
+      &::before
+        transition: background-color, border-color 67ms linear
+
+      &::after
+        transition: transform 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s
+
+    &--ios .switch__control
+      &::before
+        transition: background-color 0.2s ease
+
+      &::after
+        transition: transform 0.2s cubic-bezier(0.36, -0.24, 0.26, 1.32)

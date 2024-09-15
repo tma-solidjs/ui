@@ -1,0 +1,122 @@
+.button
+  display: inline-flex
+  align-items: center
+  justify-content: center
+
+  border: none
+  border-radius: 8px
+  text-decoration: none
+  box-sizing: border-box
+
+  max-inline-size: 100%
+  min-inline-size: 80px
+
+  @media (hover: hover) and (pointer: fine)
+    &:hover::after
+      opacity: var(--button--hovered-opacity)
+
+  &::after
+    content: ''
+    position: absolute
+    inset: 0
+    opacity: 0
+    transition: opacity .15s ease-out
+    background: var(--bg_color)
+    width: 100%
+    height: 100%
+
+  &--stretched
+    inline-size: 100%
+    flex-grow: 1
+
+  &_before,
+  &_after
+    display: flex
+    align-items: center
+    justify-content: center
+
+  &__content
+    white-space: nowrap
+    text-overflow: ellipsis
+    overflow: hidden
+    z-index: var(--z-index--simple)
+
+  &__spinner
+    position: absolute
+
+    display: flex
+    align-items: center
+    justify-content: center
+
+    cursor: auto
+    background: inherit
+    border-radius: inherit
+    color: var(--button--spinner-color)
+
+  &--s
+    height: 36px
+    min-width: 34px
+    gap: 6px
+
+    padding: 8px 12px
+    border-radius: 20px
+
+  &--m
+    height: 42px
+    min-width: 42px
+    gap: 8px
+    padding: 8px 14px
+
+  &--l
+    height: 50px
+    gap: 10px
+    padding: 10px 20px
+
+  &_filled
+    --button--hovered-opacity: .15
+    --button--spinner-color: var(--button_text_color)
+    color: var(--button_text_color)
+    background: var(--button_color)
+
+  &_bezeled
+    --button--hovered-opacity: .07
+    --button--spinner-color: var(--link_color)
+    color: var(--link_color)
+    background: var(--secondary_fill)
+
+  &_plain
+    --button--hovered-opacity: .03
+    --button--spinner-color: var(--plain_foreground)
+    color: var(--link_color)
+    background: transparent
+
+  &_gray
+    --button--hovered-opacity: .5
+    --button--spinner-color: var(--plain_foreground)
+    color: var(--plain_foreground)
+    background: var(--plain_background)
+
+  &_outline
+    --button--hovered-opacity: .5
+    --button--spinner-color: var(--plain_foreground)
+    color: var(--plain_foreground)
+    background: inherit
+    box-shadow: 0 0 0 1px var(--outline)
+
+  &_white
+    --button--hovered-opacity: .5
+    --button--spinner-color: var(--surface_dark)
+    background: var(--white)
+
+  &--ios
+    &--m
+      border-radius: 12px
+
+    &::after
+      content: unset
+
+  &--loading .button_before,
+  &--loading .button_after,
+  &--loading .button__content
+    opacity: 0
+    display: none
