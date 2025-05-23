@@ -16,10 +16,8 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
-    "version": "npm version patch",
-    "prepublishOnly": "npm run version",
     "dev": "storybook dev -p 6006",
     "build": "vite build && npm run build:types",
     "build:types": "dts-bundle-generator -o dist/index.d.ts src/index.ts",
