@@ -1,11 +1,29 @@
-import "./Headline.sass";
+import styles from "./Headline.module.sass";
 
-import { Typography, TypographyProps } from "@/components";
+import { type Component, splitProps } from "solid-js";
 
-import { ComponentExtended } from "@/models";
+import { Typography, type TypographyProps } from "@/components";
 
-interface HeadlineProps extends TypographyProps {}
+export interface HeadlineProps extends TypographyProps {}
 
-export const Headline: ComponentExtended<HeadlineProps> = (props) => {
-  return <Typography class="headline" component={"h5"} {...props} />;
+const Headline: Component<HeadlineProps> = (props) => {
+  const [local, attributes] = splitProps(props, [
+    "class",
+    "classList",
+    "component",
+  ]);
+
+  return (
+    <Typography
+      class={styles.root}
+      classList={{
+        [`${local.class}`]: !!local.class,
+        ...local.classList,
+      }}
+      component={local.component || "h5"}
+      {...attributes}
+    />
+  );
 };
+
+export default Headline;

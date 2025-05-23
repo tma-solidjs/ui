@@ -1,0 +1,35 @@
+:root[data-theme="dark"]
+  --bg_color: var(--tg-theme-bg-color, #212121)
+  --text_color: var(--tg-theme-text-color, #FFFFFF)
+  --hint_color: var(--tg-theme-hint-color, #AAAAAA)
+  --link_color: var(--tg-theme-link-color, #2990FF)
+  --button_color: var(--tg-theme-button-color, #2990FF)
+  --button_text_color: var(--tg-theme-button-text-color, #FFFFFF)
+  --secondary_bg_color: var(--tg-theme-secondary-bg-color, #0F0F0F)
+  --header_bg_color: var(--tg-theme-header-bg-color, #212121)
+  --accent_text_color: var(--tg-theme-accent-text-color, #007AFF)
+  --section_bg_color: var(--tg-theme-section-bg-color, #212121)
+  --section_header_text_color: var(--tg-theme-section-header-text-color, #AAAAAA)
+  --subtitle_text_color: var(--tg-theme-subtitle-text-color, #AAAAAA)
+  --destructive_text_color: var(--tg-theme-destructive-text-color, #E53935)
+
+  --skeleton: rgba(255, 255, 255, .03)
+  --divider: rgba(255, 255, 255, .05)
+  --outline: rgba(255, 255, 255, .10)
+  --surface_primary: rgba(23, 23, 23, .95)
+  --tertiary_bg_color: #2A2A2A
+  --quartenary_bg_color: #2F2F2F
+  --segmented_control_active_bg: #2F2F2F
+  --card_bg_color: #242424
+  --secondary_hint_color: #78797E
+  --secondary_fill: rgba(41, 144, 255, .15)
+  --green: #32E55E
+  --destructive_background: rgba(255, 35, 35, .02)
+  --primary_code_highlight: #2990FF
+  --secondary_code_highlight: #E937ED
+  --tertiary_code_highlight: #5AE536
+  --plain_background: rgba(255, 255, 255, .08)
+  --plain_foreground: rgba(255, 255, 255, .95)
+
+  @supports (color: color-mix(in srgb, var(--accent_text_color) 15%, transparent))
+    --secondary_fill: color-mix(in srgb, var(--accent_text_color) 15%, transparent)

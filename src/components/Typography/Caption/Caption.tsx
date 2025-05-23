@@ -1,10 +1,10 @@
-import { mergeProps, splitProps } from "solid-js";
+import styles from "./Caption.module.sass";
 
-import { Typography, TypographyProps } from "@/components";
+import { type Component, mergeProps, splitProps } from "solid-js";
 
-import { ComponentExtended } from "@/models";
+import { Typography, type TypographyProps } from "@/components";
 
-interface CaptionProps extends Omit<TypographyProps, "plain"> {
+export interface CaptionProps extends Omit<TypographyProps, "plain"> {
   level?: "1" | "2";
 }
 
@@ -12,16 +12,25 @@ const defaultProps: CaptionProps = {
   level: "1",
 };
 
-export const Caption: ComponentExtended<CaptionProps> = (props) => {
+const Caption: Component<CaptionProps> = (props) => {
   const [local, attributes] = splitProps(mergeProps(defaultProps, props), [
     "level",
+    "class",
+    "classList",
+    "component",
   ]);
 
   return (
     <Typography
-      class={`caption--${local.level}`}
-      component={"span"}
+      class={styles[`root-${local.level}`]}
+      classList={{
+        [`${local.class}`]: !!local.class,
+        ...local.classList,
+      }}
+      component={local.component || "span"}
       {...attributes}
     />
   );
 };
+
+export default Caption;

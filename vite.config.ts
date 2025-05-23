@@ -26,16 +26,6 @@ export default defineConfig({
         drop_console: true,
       },
     },
-    rollupOptions: {
-      output: {
-        chunkFileNames: "js/[hash].js",
-        entryFileNames: "js/[hash].js",
-        assetFileNames: (opt) => {
-          const [[, ext]] = Array.from(opt!.name!.matchAll(/.([0-9-a-z]+)$/g));
-          return `${ext}/[hash].${ext}`;
-        },
-      },
-    },
   },
   server: {
     port: 3000,

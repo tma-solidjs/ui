@@ -1,12 +1,10 @@
-import "./Subheadline.sass";
+import styles from "./Subheadline.module.sass";
 
-import { mergeProps, splitProps } from "solid-js";
+import { type Component, mergeProps, splitProps } from "solid-js";
 
-import { Typography, TypographyProps } from "@/components";
+import { Typography, type TypographyProps } from "@/components";
 
-import { ComponentExtended } from "@/models";
-
-interface SubheadlineProps extends TypographyProps {
+export interface SubheadlineProps extends TypographyProps {
   level?: "1" | "2";
 }
 
@@ -14,16 +12,25 @@ const defaultProps: SubheadlineProps = {
   level: "1",
 };
 
-export const Subheadline: ComponentExtended<SubheadlineProps> = (props) => {
+const Subheadline: Component<SubheadlineProps> = (props) => {
   const [local, attributes] = splitProps(mergeProps(defaultProps, props), [
     "level",
+    "component",
+    "class",
+    "classList",
   ]);
 
   return (
     <Typography
-      class={`subheadline--${local.level}`}
-      component={"h6"}
+      class={styles[`root--${local.level}`]}
+      classList={{
+        [`${props.class}`]: !!props.class,
+        ...local.classList,
+      }}
+      component={local.component || "h6"}
       {...attributes}
     />
   );
 };
+
+export default Subheadline;

@@ -4,22 +4,27 @@
   "description": "Native platform UI Kit for your project on Solid.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "storybook dev -p 6006",
+    "upgrade": "npm-check-updates -u"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^22.5.5",
-    "lightningcss": "^1.27.0",
-    "sass": "^1.78.0",
-    "terser": "^5.32.0",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.11",
-    "vite-plugin-solid": "^2.8.2",
+    "@storybook/addon-essentials": "^8.6.14",
+    "@storybook/addon-interactions": "^8.6.14",
+    "@storybook/html-vite": "^8.6.14",
+    "@types/node": "^22.15.21",
+    "lightningcss": "^1.30.1",
+    "prettier": "^3.5.3",
+    "sass": "^1.89.0",
+    "terser": "^5.39.2",
+    "typescript": "^5.8.3",
+    "vite": "6.3.5",
+    "vite-plugin-solid": "^2.11.6",
     "vite-plugin-solid-svg": "^0.8.1"
   },
   "dependencies": {
-    "solid-js": "^1.8.11"
+    "solid-js": "1.9.7"
   }
 }

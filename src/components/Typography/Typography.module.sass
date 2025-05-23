@@ -1,0 +1,11 @@
+.root
+  @for $i from 1 through 3
+    &-#{$i}
+      font:
+        weight: var(--font_weight--accent#{$i})
+
+.plain
+  margin: 0
+
+.caps
+  text-transform: uppercase

@@ -1,4 +1,2 @@
-export * from "./usePlatform";
-export * from "./useNavigator";
-export * from "./useTimeout";
-export * from "./useRipple";
+export { default as usePlatform } from "./usePlatform";
+export { default as useRipple } from "./useRipple";

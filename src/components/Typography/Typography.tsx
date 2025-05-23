@@ -1,11 +1,15 @@
-import "./Typography.sass";
+import styles from "./Typography.module.sass";
 
-import { mergeProps, splitProps, ValidComponent } from "solid-js";
+import {
+  type ValidComponent,
+  type Component,
+  type JSX,
+  mergeProps,
+  splitProps,
+} from "solid-js";
 import { Dynamic } from "solid-js/web";
 
-import { ComponentExtended } from "@/models";
-
-export interface TypographyProps {
+export interface TypographyProps extends JSX.HTMLAttributes<HTMLElement> {
   component?: ValidComponent;
   caps?: boolean;
   plain?: boolean;
@@ -19,7 +23,7 @@ const defaultProps: TypographyProps = {
   component: "span",
 };
 
-export const Typography: ComponentExtended<TypographyProps> = (props) => {
+const Typography: Component<TypographyProps> = (props) => {
   const [local, attributes] = splitProps(mergeProps(defaultProps, props), [
     "class",
     "classList",
@@ -32,11 +36,10 @@ export const Typography: ComponentExtended<TypographyProps> = (props) => {
   return (
     <Dynamic
       {...attributes}
-      class="typography"
+      class={styles[`root-${local.weight}`]}
       classList={{
-        [`typography_weight-${local.weight}`]: true,
-        [`typography_plain`]: local.plain,
-        [`typography_caps`]: local.caps,
+        [styles.plain]: local.plain,
+        [styles.caps]: local.caps,
         [`${local.class}`]: !!local.class,
         ...local.classList,
       }}
@@ -44,3 +47,5 @@ export const Typography: ComponentExtended<TypographyProps> = (props) => {
     />
   );
 };
+
+export default Typography;

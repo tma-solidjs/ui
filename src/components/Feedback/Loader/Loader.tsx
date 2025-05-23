@@ -1,27 +1,30 @@
-import "./Loader.sass";
+import styles from "./Loader.module.sass";
+
+import type { Component, JSX } from "solid-js";
 
 import { usePlatform } from "@/hooks";
 
-import { ComponentExtended } from "@/models";
-import { LoaderProps } from "./Loader.interface";
+import AndroidLoading from "./variants/android-loading.svg";
+import IosLoading from "./variants/ios-loading.svg";
 
-import AndroidLoading from "@/assets/icons/android-loading.svg";
-import IosLoading from "@/assets/icons/ios-loading.svg";
+interface LoaderProps extends JSX.HTMLAttributes<HTMLDivElement> {
+  size: "s" | "m" | "l";
+}
 
-export const Loader: ComponentExtended<LoaderProps> = (props) => {
+const Loader: Component<LoaderProps> = (props) => {
   const platform = usePlatform();
 
   return (
     <div
-      class="loader"
+      class={`${styles.root} ${styles[platform()]} ${styles[props.size || "s"]}`}
       classList={{
-        "loader--ios": platform().isIOS,
-        [`loader_size--${props.size || "s"}`]: true,
+        [`${props.class}`]: !!props.class,
         ...props.classList,
       }}
-      color="orange"
     >
-      {platform().isIOS ? <IosLoading /> : <AndroidLoading />}
+      {platform() === "ios" ? <IosLoading /> : <AndroidLoading />}
     </div>
   );
 };
+
+export default Loader;

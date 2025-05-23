@@ -1,6 +1,6 @@
 import { createEffect } from "solid-js";
 
-export const useTimeout = (callbackFunction: () => void, duration: number) => {
+const useTimeout = (callbackFunction: () => void, duration: number) => {
   const options = { callbackFunction, duration };
   let timeout: ReturnType<typeof setTimeout>;
 
@@ -18,3 +18,5 @@ export const useTimeout = (callbackFunction: () => void, duration: number) => {
 
   return { set, clear };
 };
+
+export default useTimeout;

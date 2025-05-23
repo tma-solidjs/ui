@@ -1,11 +1,21 @@
-import "./Text.sass";
+import styles from "./Text.module.sass";
 
-import { Typography, TypographyProps } from "@/components";
+import { type Component, splitProps } from "solid-js";
 
-import { ComponentExtended } from "@/models";
+import { Typography, type TypographyProps } from "@/components";
 
-interface TextProps extends Omit<TypographyProps, "plain"> {}
+export interface TextProps extends Omit<TypographyProps, "plain"> {}
 
-export const Text: ComponentExtended<TextProps> = (props) => {
-  return <Typography class="text" component={"p"} {...props} />;
+const Text: Component<TextProps> = (props) => {
+  const [local, attributes] = splitProps(props, ["class", "classList"]);
+
+  return (
+    <Typography
+      class={styles.root}
+      classList={{ [`${local.class}`]: !!local.class, ...local.classList }}
+      {...attributes}
+    />
+  );
 };
+
+export default Text;

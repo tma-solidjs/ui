@@ -1,21 +1,36 @@
-import "./Panel.sass";
+import styles from "./Panel.module.sass";
+
+import type { Component, JSX } from "solid-js";
 
 import { usePlatform } from "@/hooks";
 
-import { ComponentExtended } from "@/models/components";
+export interface PanelProps extends JSX.HTMLAttributes<HTMLDivElement> {
+  wrapperClass?: string;
+  wrapperClassList?: Record<string, boolean | undefined>;
+}
 
-export const Panel: ComponentExtended = (props) => {
+const Panel: Component<PanelProps> = (props) => {
   const platform = usePlatform();
 
   return (
     <div
-      class="panel"
+      class={`${styles.root} ${styles[platform()]}`}
       classList={{
-        "panel--ios": platform().isIOS,
+        [`${props.class}`]: !!props.class,
         ...props.classList,
       }}
     >
-      <div class="panel__wrapper">{props.children}</div>
+      <div
+        class={`${styles.wrapper}`}
+        classList={{
+          [`${props.wrapperClass}`]: !!props.wrapperClass,
+          ...props.wrapperClassList,
+        }}
+      >
+        {props.children}
+      </div>
     </div>
   );
 };
+
+export default Panel;

@@ -1,0 +1,45 @@
+:root
+  --bg_color: var(--tg-theme-bg-color, #FFFFFF)
+  --text_color: var(--tg-theme-text-color, #000000)
+  --hint_color: var(--tg-theme-hint-color, #707579)
+  --link_color: var(--tg-theme-link-color, #007AFF)
+  --button_color: var(--tg-theme-button-color, #007AFF)
+  --button_text_color: var(--tg-theme-button-text-color, #FFFFFF)
+  --secondary_bg_color: var(--tg-theme-secondary-bg-color, #EFEFF4)
+  --header_bg_color: var(--tg-theme-header-bg-color, #FFFFFF)
+  --accent_text_color: var(--tg-theme-accent-text-color, #007AFF)
+  --section_bg_color: var(--tg-theme-section-bg-color, #FFFFFF)
+  --section_header_text_color: var(--tg-theme-section-header-text-color, #707579)
+  --subtitle_text_color: var(--tg-theme-subtitle-text-color, #707579)
+  --destructive_text_color: var(--tg-theme-destructive-text-color, #E53935)
+
+  --skeleton: rgba(255, 255, 255, .03)
+  --divider: rgba(0, 0, 0, .15)
+  --outline: rgba(0, 0, 0, .05)
+  --surface_primary: rgba(255, 255, 255, .95)
+  --tertiary_bg_color: #F4F4F7
+  --quartenary_bg_color: #F6F6FA
+  --segmented_control_active_bg: #FFFFFF
+  --card_bg_color: #FFFFFF
+  --secondary_hint_color: #A2ACB0
+  --secondary_fill: rgba(67, 120, 255, .10)
+  --green: #31D158
+  --destructive_background: #E53935
+  --primary_code_highlight: #4378FF
+  --secondary_code_highlight: #B00FB4
+  --tertiary_code_highlight: #3A9F20
+  --plain_background: rgba(0, 0, 0, .04)
+  --plain_foreground: rgba(0, 0, 0, .8)
+  --toast_accent_color: #55A6FF
+
+  --surface_dark: rgba(56, 56, 56, .85)
+  --tooltip_background_dark: rgba(0, 0, 0, .85)
+  --white: #FFFFFF
+  --black: #000000
+
+  --z-index--simple: 1
+  --z-index--skeleton: 2
+  --z-index--overlay: 3
+
+  @supports (color: color-mix(in srgb, var(--accent_text_color) 10%, transparent))
+    --secondary_fill: color-mix(in srgb, var(--accent_text_color) 10%, transparent)

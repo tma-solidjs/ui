@@ -1,8 +1,6 @@
-import { mergeProps, splitProps } from "solid-js";
+import { type Component, mergeProps, splitProps } from "solid-js";
 
-import { Text, Subheadline, TypographyProps } from "@/components";
-
-import { ComponentExtended } from "@/models";
+import { Subheadline, Text, type TypographyProps } from "@/components";
 
 export interface ButtonTypographyProps extends Omit<TypographyProps, "size"> {
   size: "s" | "m" | "l";
@@ -12,9 +10,7 @@ const defaultProps: ButtonTypographyProps = {
   size: "m",
 };
 
-export const ButtonTypography: ComponentExtended<ButtonTypographyProps> = (
-  props
-) => {
+const ButtonTypography: Component<ButtonTypographyProps> = (props) => {
   const [local, attributes] = splitProps(mergeProps(defaultProps, props), [
     "size",
   ]);
@@ -25,3 +21,5 @@ export const ButtonTypography: ComponentExtended<ButtonTypographyProps> = (
 
   return <Subheadline level="2" weight="2" {...attributes} />;
 };
+
+export default ButtonTypography;

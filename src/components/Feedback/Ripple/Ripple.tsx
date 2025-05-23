@@ -1,22 +1,22 @@
-import "./Ripple.sass";
+import styles from "./Ripple.module.sass";
 
-import { For, splitProps } from "solid-js";
+import { type Component, For, splitProps } from "solid-js";
 
-import { ComponentExtended, Wave } from "@/models";
+import { Wave } from "@/models";
 
 export interface RippleProps {
   clicks: Wave[];
 }
 
-export const Ripple: ComponentExtended<RippleProps> = (props) => {
+const Ripple: Component<RippleProps> = (props) => {
   const [local] = splitProps(props, ["clicks"]);
 
   return (
-    <span aria-hidden class="ripple">
+    <span aria-hidden class={styles.root}>
       <For each={local.clicks}>
         {(wave) => (
           <span
-            class="ripple_wave"
+            class={styles.wave}
             style={{
               top: `${wave.y}px`,
               left: `${wave.x}px`,
@@ -27,3 +27,5 @@ export const Ripple: ComponentExtended<RippleProps> = (props) => {
     </span>
   );
 };
+
+export default Ripple;

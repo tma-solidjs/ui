@@ -1,14 +1,17 @@
-import "./Title.sass";
+import styles from "./Title.module.sass";
 
-import { mergeProps, splitProps, ValidComponent } from "solid-js";
+import {
+  type Component,
+  type ValidComponent,
+  mergeProps,
+  splitProps,
+} from "solid-js";
 
-import { Typography, TypographyProps } from "@/components";
-
-import { ComponentExtended } from "@/models";
+import { Typography, type TypographyProps } from "@/components";
 
 type TitleLevel = "1" | "2" | "3";
 
-interface TitleProps extends TypographyProps {
+export interface TitleProps extends TypographyProps {
   level?: TitleLevel;
 }
 
@@ -20,19 +23,25 @@ const titleLevelTags: Record<TitleLevel, ValidComponent> = {
 
 const defaultProps: TitleProps = { level: "2" };
 
-export const Title: ComponentExtended<TitleProps> = (props) => {
+const Title: Component<TitleProps> = (props) => {
   const [local, attributes] = splitProps(mergeProps(defaultProps, props), [
     "level",
+    "class",
+    "classList",
+    "component",
   ]);
 
   return (
     <Typography
-      class="title"
+      class={styles[`root-${local.level}`]}
       classList={{
-        [`title--${local.level}`]: !!local.level,
+        [`${local.class}`]: !!local.class,
+        ...local.classList,
       }}
-      component={titleLevelTags[local?.level as TitleLevel] || "h2"}
+      component={local.component || titleLevelTags[local.level || "2"]}
       {...attributes}
     />
   );
 };
+
+export default Title;

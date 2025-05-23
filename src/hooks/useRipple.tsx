@@ -1,17 +1,17 @@
 import { createMemo, createSignal } from "solid-js";
 
-import { useTimeout } from "./useTimeout";
+import { default as useTimeout } from "./useTimeout";
 
 import { Wave } from "@/models";
 
 const RIPPLE_DELAY = 70;
 const WAVE_LIVE = 225;
 
-export const useRipple = () => {
+const useRipple = () => {
   const [clicks, setClicks] = createSignal<Wave[]>([]);
 
   const pointerDelayTimers = createMemo(
-    () => new Map<number, ReturnType<typeof setTimeout>>()
+    () => new Map<number, ReturnType<typeof setTimeout>>(),
   );
 
   const clearClicks = useTimeout(() => setClicks([]), WAVE_LIVE);
@@ -19,7 +19,7 @@ export const useRipple = () => {
   function addClick(x: number, y: number, pointerId: number) {
     const dateNow = Date.now();
     const filteredClicks = clicks().filter(
-      (click) => click.date + WAVE_LIVE > dateNow
+      (click) => click.date + WAVE_LIVE > dateNow,
     );
 
     setClicks([
@@ -43,7 +43,7 @@ export const useRipple = () => {
 
     pointerDelayTimers().set(
       e.pointerId,
-      setTimeout(() => addClick(x, y, e.pointerId), RIPPLE_DELAY)
+      setTimeout(() => addClick(x, y, e.pointerId), RIPPLE_DELAY),
     );
   };
 
@@ -59,3 +59,5 @@ export const useRipple = () => {
     onPointerCancel,
   };
 };
+
+export default useRipple;

@@ -1,23 +1,24 @@
 import { createResource, createSignal, createEffect } from "solid-js";
 
-export const usePlatform = () => {
-  const [platform, setPlatform] = createSignal({
-    isIOS: false,
-    isAndroid: false,
-  });
+type Platforms = "ios" | "android";
+
+const usePlatform = () => {
+  const [platform, setPlatform] = createSignal<Platforms>("android");
 
   const [resource] = createResource(async () => {
-    const userAgent =
-      navigator.userAgent || navigator.vendor || (window as any).opera;
+    const userAgent = (navigator.userAgent ||
+      navigator.vendor ||
+      (window as any).opera) as string | undefined;
 
     if (
+      userAgent &&
       /iPad|iPhone|iPod|Macintosh|MacIntel/.test(userAgent) &&
       !(window as any).MSStream
     ) {
-      return { isIOS: true, isAndroid: false };
-    } else {
-      return { isIOS: false, isAndroid: true };
+      return "ios";
     }
+
+    return "android";
   });
 
   createEffect(() => {
@@ -28,3 +29,5 @@ export const usePlatform = () => {
 
   return platform;
 };
+
+export default usePlatform;
