@@ -3,14 +3,14 @@ import path from "path";
 
 import solid from "vite-plugin-solid";
 import tsconfigPaths from "vite-tsconfig-paths";
-import visualizer from "vite-bundle-analyzer";
+// import visualizer from "vite-bundle-analyzer";
 import { optimizeCssModules } from "vite-plugin-optimize-css-modules";
 
 export default defineConfig({
   plugins: [
     solid(),
     tsconfigPaths(),
-    visualizer(),
+    // visualizer(),
     optimizeCssModules({
       apply: "build",
     }),
