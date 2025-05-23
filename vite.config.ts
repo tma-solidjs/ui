@@ -1,35 +1,78 @@
 import { defineConfig } from "vite";
-import path from "node:path";
+import path from "path";
 
-import solidPlugin from "vite-plugin-solid";
-import svgr from "vite-plugin-solid-svg";
-
-import { compilerOptions } from "./tsconfig.json";
+import solid from "vite-plugin-solid";
+import tsconfigPaths from "vite-tsconfig-paths";
+import visualizer from "vite-bundle-analyzer";
+import { optimizeCssModules } from "vite-plugin-optimize-css-modules";
 
 export default defineConfig({
-  base: "/",
-  appType: "spa",
-  publicDir: "public",
-  assetsInclude: ["**/*.tgs"],
-  plugins: [solidPlugin(), svgr({ defaultAsComponent: true })],
+  plugins: [
+    solid(),
+    tsconfigPaths(),
+    visualizer(),
+    optimizeCssModules({
+      apply: "build",
+    }),
+  ],
   build: {
-    sourcemap: false,
-    cssCodeSplit: true,
+    lib: {
+      entry: path.resolve(__dirname, "src/index.ts"),
+      name: "@tma-solidjs/ui",
+      formats: ["es", "cjs"],
+      fileName: (format) => `ui.${format}.js`,
+    },
+    rollupOptions: {
+      external: ["solid-js", "solid-js/web", "solid-js/store"],
+      output: {
+        globals: {
+          "solid-js": "solidJs",
+        },
+      },
+    },
+    outDir: "dist",
+    emptyOutDir: true,
     cssMinify: "lightningcss",
-    outDir: compilerOptions.outDir,
+    cssCodeSplit: true,
     minify: "terser",
-    manifest: false,
     terserOptions: {
-      maxWorkers: 2,
+      ecma: 2020,
       compress: {
-        drop_debugger: true,
         drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ["console.log", "console.info", "console.debug"],
+        passes: 3,
+        keep_fargs: false,
+        toplevel: true,
+        unsafe: true,
+        unsafe_arrows: true,
+        unsafe_comps: true,
+        unsafe_Function: true,
+        unsafe_math: true,
+        unsafe_methods: true,
+        unsafe_proto: true,
+        unsafe_regexp: true,
+        unsafe_undefined: true,
+      },
+      mangle: {
+        toplevel: true,
+        properties: {
+          regex: /^_/,
+        },
+      },
+      format: {
+        comments: false,
       },
     },
   },
-  server: {
-    port: 3000,
-    strictPort: true,
+  css: {
+    postcss: {
+      plugins: [
+        require("autoprefixer")({
+          overrideBrowserslist: ["> 1%", "last 2 versions", "not dead"],
+        }),
+      ],
+    },
   },
   resolve: {
     alias: {

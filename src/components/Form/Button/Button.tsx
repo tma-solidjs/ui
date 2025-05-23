@@ -66,20 +66,15 @@ const Button: Component<ButtonProps> = (props) => {
       interactiveAnimation="background"
       onClick={handleOnClick}
     >
-      {local.loading && (
-        <Loader classList={{ [styles.button__spinner]: true }} size="s" />
-      )}
+      {local.loading && <Loader class={styles.spinner} size="s" />}
 
-      {local.before && <div class={styles.button_before}>{local.before}</div>}
+      {local.before && <div class={styles.before}>{local.before}</div>}
 
-      <ButtonTypography
-        classList={{ [styles.button__content]: true }}
-        size={local.size || "m"}
-      >
+      <ButtonTypography class={styles.content} size={local.size || "m"}>
         {local.children}
       </ButtonTypography>
 
-      {local.after && <div class={styles.button_after}>{local.after}</div>}
+      {local.after && <div class={styles.after}>{local.after}</div>}
     </Tappable>
   );
 };
