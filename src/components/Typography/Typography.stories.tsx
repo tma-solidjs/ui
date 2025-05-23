@@ -69,24 +69,24 @@ export default {
     component: {
       control: { type: "select" },
       options: ["span", "p", "h1", "h2", "h3", "div"],
-      description: "HTML-тег, используемый компонентом",
+      description: "HTML Tag",
     },
     plain: {
       control: "boolean",
-      description: "Убирает стилизацию, если true",
+      description: "",
     },
     caps: {
       control: "boolean",
-      description: "Отображать текст в верхнем регистре",
+      description: "",
     },
     weight: {
       control: { type: "select" },
       options: ["1", "2", "3"],
-      description: "Толщина шрифта",
+      description: "",
     },
     class: {
       control: "text",
-      description: "Дополнительные CSS-классы",
+      description: "",
     },
   },
 } as Meta<ComponentProps<typeof Typography>>;

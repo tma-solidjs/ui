@@ -14,16 +14,14 @@ const Panel: Component<PanelProps> = (props) => {
 
   return (
     <div
-      class={`${styles.root} ${styles[platform()]}`}
+      class={`${styles.root} ${styles[platform()]} ${props.class || ""}`}
       classList={{
-        [`${props.class}`]: !!props.class,
         ...props.classList,
       }}
     >
       <div
-        class={`${styles.wrapper}`}
+        class={`${styles.wrapper} ${props.wrapperClass || ""}`}
         classList={{
-          [`${props.wrapperClass}`]: !!props.wrapperClass,
           ...props.wrapperClassList,
         }}
       >

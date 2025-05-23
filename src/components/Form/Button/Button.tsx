@@ -1,13 +1,17 @@
-import "./Button.sass";
+import styles from "./Button.module.sass";
 
+import {
+  type Component,
+  type JSX,
+  type ValidComponent,
+  mergeProps,
+  splitProps,
+} from "solid-js";
 import { usePlatform } from "@/hooks";
 
-import { ButtonTypography, Loader, Tappable } from "@/components";
+import { Tappable, Loader, ButtonTypography } from "@/components";
 
-import { ComponentExtended } from "@/models";
-import { JSX, mergeProps, splitProps, ValidComponent } from "solid-js";
-
-export interface ButtonProps {
+export interface ButtonProps extends JSX.HTMLAttributes<HTMLButtonElement> {
   before?: JSX.Element;
   after?: JSX.Element;
   size?: "s" | "m" | "l";
@@ -26,9 +30,7 @@ const defaultProps: ButtonProps = {
   component: "button",
 };
 
-export const Button: ComponentExtended<ButtonProps, HTMLButtonElement> = (
-  props
-) => {
+const Button: Component<ButtonProps> = (props) => {
   const platform = usePlatform();
 
   const [local, attributes] = splitProps(mergeProps(defaultProps, props), [
@@ -40,45 +42,46 @@ export const Button: ComponentExtended<ButtonProps, HTMLButtonElement> = (
     "mode",
     "loading",
     "disabled",
+    "class",
     "classList",
     "children",
   ]);
 
   const handleOnClick = (e?: MouseEvent) => {
-    if (!e || local.loading || typeof attributes.onClick !== "function") {
-      return;
-    }
-
+    if (!e || local.loading || typeof attributes.onClick !== "function") return;
     attributes.onClick(e as any);
   };
 
   return (
     <Tappable
-      component={local.component}
+      class={`${styles.root} ${styles[`root--${local.size}`]} ${styles[`root_${local.mode}`]} ${local.class || ""}`}
       classList={{
-        button: true,
-        "button--ios": platform().isIOS,
-        "button--stretched": local.stretched,
-        "button--loading": local.loading,
-        [`button--${local.size}`]: true,
-        [`button_${local.mode}`]: true,
+        [styles[`root--ios`]]: platform() === "ios",
+        [styles.stretched]: local.stretched,
+        [styles.loading]: local.loading,
         ...local.classList,
       }}
+      component={local.component}
       disabled={local.disabled}
       interactiveAnimation="background"
       onClick={handleOnClick}
     >
       {local.loading && (
-        <Loader classList={{ button__spinner: true }} size="s" />
+        <Loader classList={{ [styles.button__spinner]: true }} size="s" />
       )}
-      {local.before && <div class="button_before">{local.before}</div>}
+
+      {local.before && <div class={styles.button_before}>{local.before}</div>}
+
       <ButtonTypography
-        classList={{ button__content: true }}
+        classList={{ [styles.button__content]: true }}
         size={local.size || "m"}
       >
         {local.children}
       </ButtonTypography>
-      {local.after && <div class="button_after">{local.after}</div>}
+
+      {local.after && <div class={styles.button_after}>{local.after}</div>}
     </Tappable>
   );
 };
+
+export default Button;

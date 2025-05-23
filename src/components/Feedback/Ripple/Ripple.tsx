@@ -2,7 +2,7 @@ import styles from "./Ripple.module.sass";
 
 import { type Component, For, splitProps } from "solid-js";
 
-import { Wave } from "@/models";
+import { type Wave } from "@/models";
 
 export interface RippleProps {
   clicks: Wave[];

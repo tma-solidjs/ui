@@ -1,7 +1,6 @@
 import styles from "./Loader.module.sass";
 
-import type { Component, JSX } from "solid-js";
-
+import { type Component, type JSX, splitProps } from "solid-js";
 import { usePlatform } from "@/hooks";
 
 import AndroidLoading from "./variants/android-loading.svg";
@@ -13,14 +12,12 @@ interface LoaderProps extends JSX.HTMLAttributes<HTMLDivElement> {
 
 const Loader: Component<LoaderProps> = (props) => {
   const platform = usePlatform();
+  const [local, attributes] = splitProps(props, ["class"]);
 
   return (
     <div
-      class={`${styles.root} ${styles[platform()]} ${styles[props.size || "s"]}`}
-      classList={{
-        [`${props.class}`]: !!props.class,
-        ...props.classList,
-      }}
+      class={`${styles.root} ${styles[`size--${props.size || "s"}`]} ${local.class || ""}`}
+      {...attributes}
     >
       {platform() === "ios" ? <IosLoading /> : <AndroidLoading />}
     </div>

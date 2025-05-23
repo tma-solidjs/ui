@@ -22,9 +22,8 @@ const Subheadline: Component<SubheadlineProps> = (props) => {
 
   return (
     <Typography
-      class={styles[`root--${local.level}`]}
+      class={`${styles[`root--${local.level}`]} ${local.class || ""}`}
       classList={{
-        [`${props.class}`]: !!props.class,
         ...local.classList,
       }}
       component={local.component || "h6"}

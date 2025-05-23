@@ -4,3 +4,4 @@ dist
 .code
 .idea
 DS_Store
+storybook.log

@@ -1,63 +1,18 @@
-.button
+.root
   display: inline-flex
   align-items: center
   justify-content: center
-
   border: none
   border-radius: 8px
   text-decoration: none
   box-sizing: border-box
-
   max-inline-size: 100%
   min-inline-size: 80px
-
-  @media (hover: hover) and (pointer: fine)
-    &:hover::after
-      opacity: var(--button--hovered-opacity)
-
-  &::after
-    content: ''
-    position: absolute
-    inset: 0
-    opacity: 0
-    transition: opacity .15s ease-out
-    background: var(--bg_color)
-    width: 100%
-    height: 100%
-
-  &--stretched
-    inline-size: 100%
-    flex-grow: 1
-
-  &_before,
-  &_after
-    display: flex
-    align-items: center
-    justify-content: center
-
-  &__content
-    white-space: nowrap
-    text-overflow: ellipsis
-    overflow: hidden
-    z-index: var(--z-index--simple)
-
-  &__spinner
-    position: absolute
-
-    display: flex
-    align-items: center
-    justify-content: center
-
-    cursor: auto
-    background: inherit
-    border-radius: inherit
-    color: var(--button--spinner-color)
 
   &--s
     height: 36px
     min-width: 34px
     gap: 6px
-
     padding: 8px 12px
     border-radius: 20px
 
@@ -69,6 +24,7 @@
 
   &--l
     height: 50px
+    min-width: 48px
     gap: 10px
     padding: 10px 20px
 
@@ -109,14 +65,55 @@
     background: var(--white)
 
   &--ios
-    &--m
+    & .root--m
       border-radius: 12px
 
     &::after
       content: unset
 
-  &--loading .button_before,
-  &--loading .button_after,
-  &--loading .button__content
+  &::after
+    content: ''
+    position: absolute
+    inset: 0
+    opacity: 0
+    transition: opacity .15s ease-out
+    background: var(--bg_color)
+    width: 100%
+    height: 100%
+
+  @media (hover: hover) and (pointer: fine)
+    &:hover::after
+      opacity: var(--button--hovered-opacity)
+
+.before,
+.after
+  display: flex
+  align-items: center
+  justify-content: center
+
+.content
+  white-space: nowrap
+  text-overflow: ellipsis
+  overflow: hidden
+  z-index: var(--z-index--simple)
+
+.spinner
+  position: absolute
+  display: flex
+  align-items: center
+  justify-content: center
+  cursor: auto
+  background: inherit
+  border-radius: inherit
+  color: var(--button--spinner-color)
+
+.loading
+  .before,
+  .after,
+  .content
     opacity: 0
     display: none
+
+.stretched
+  inline-size: 100%
+  flex-grow: 1

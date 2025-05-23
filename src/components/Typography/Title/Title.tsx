@@ -33,9 +33,8 @@ const Title: Component<TitleProps> = (props) => {
 
   return (
     <Typography
-      class={styles[`root-${local.level}`]}
+      class={`${styles[`root-${local.level}`]} ${local.class || ""}`}
       classList={{
-        [`${local.class}`]: !!local.class,
         ...local.classList,
       }}
       component={local.component || titleLevelTags[local.level || "2"]}

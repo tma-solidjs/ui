@@ -1,46 +1,47 @@
-import "./Tappable.sass";
+import styles from "./Tappable.module.sass";
 
 import {
+  type Component,
+  type ValidComponent,
+  type JSX,
   createMemo,
-  JSX,
   mergeProps,
   splitProps,
-  ValidComponent,
 } from "solid-js";
 import { useRipple, usePlatform } from "@/hooks";
 
 import { Dynamic } from "solid-js/web";
 import { Ripple } from "@/components";
 
-import { ComponentExtended } from "@/models";
-
-export interface TappableProps {
+export interface TappableProps extends JSX.HTMLAttributes<HTMLElement> {
   component?: ValidComponent;
   interactiveAnimation?: "opacity" | "background";
   disabled?: boolean;
 }
 
-export const Tappable: ComponentExtended<TappableProps> = (props) => {
+const defaultProps: TappableProps = {
+  component: "div",
+  interactiveAnimation: "background",
+};
+
+const Tappable: Component<TappableProps> = (props) => {
   const platform = usePlatform();
   const { clicks, onPointerCancel, onPointerDown } = useRipple();
 
-  const [local, attributes] = splitProps(
-    mergeProps({ component: "div", interactiveAnimation: "background" }, props),
-    [
-      "class",
-      "interactiveAnimation",
-      "component",
-      "aria-readonly",
-      "classList",
-      "children",
-    ]
-  );
+  const [local, attributes] = splitProps(mergeProps(defaultProps, props), [
+    "class",
+    "interactiveAnimation",
+    "component",
+    "aria-readonly",
+    "classList",
+    "children",
+  ]);
 
   const hasRippleEffect = createMemo(
     () =>
-      platform().isAndroid &&
+      platform() === "android" &&
       local.interactiveAnimation === "background" &&
-      !local["aria-readonly"]
+      !local["aria-readonly"],
   );
 
   const handleOnClick = (e: MouseEvent) => {
@@ -53,21 +54,22 @@ export const Tappable: ComponentExtended<TappableProps> = (props) => {
 
   return (
     <Dynamic
-      {...attributes}
-      component={local.component}
-      class="tappable"
+      class={`${styles.root} ${styles[platform()]} ${local.class || ""}`}
       classList={{
-        "tappable--ios": platform().isIOS,
-        tappable_opacity: local.interactiveAnimation === "opacity",
+        [styles.opacity]: local.interactiveAnimation === "opacity",
         ...local.classList,
       }}
+      component={local.component}
       onPointerCancel={onPointerCancel}
       onPointerDown={onPointerDown}
       readOnly={local["aria-readonly"]}
       onClick={handleOnClick}
+      {...attributes}
     >
       {hasRippleEffect() && <Ripple clicks={clicks()} />}
       {local.children}
     </Dynamic>
   );
 };
+
+export default Tappable;

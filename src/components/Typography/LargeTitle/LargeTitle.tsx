@@ -15,9 +15,8 @@ const LargeTitle: Component<LargeTitleProps> = (props) => {
 
   return (
     <Typography
-      class={styles.root}
+      class={`${styles.root} ${local.class || ""}`}
       classList={{
-        [`${local.class}`]: !!local.class,
         ...local.classList,
       }}
       component={local.component || "h1"}

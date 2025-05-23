@@ -1,4 +1,4 @@
-.tappable
+.root
   position: relative
   isolation: isolate
   cursor: pointer
@@ -12,9 +12,9 @@
     cursor: default
     opacity: .35
 
-  &_opacity:active,
-  &--ios:active
-    opacity: .65
+.opacity:active,
+.ios:active
+  opacity: .65
 
-    @media (hover: hover) and (pointer: fine)
-      opacity: .85
+  @media (hover: hover) and (pointer: fine)
+    opacity: .85

@@ -1,35 +1,47 @@
-import "./VisuallyHidden.sass";
+import styles from "./VisuallyHidden.module.sass";
 
-import { Component, JSX } from "solid-js";
+import { type Component, type JSX, splitProps } from "solid-js";
 import { Dynamic } from "solid-js/web";
 
-interface DefaultProps {
+interface BaseProps {
   disabled?: boolean;
 }
 
-export interface VisuallyHiddenPropsHTMLInput
-  extends JSX.HTMLAttributes<HTMLInputElement>,
-    DefaultProps {
+interface VisuallyHiddenPropsInput
+  extends JSX.HTMLAttributes<HTMLInputElement> {
   component: "input";
   type?: string;
 }
 
-export interface VisuallyHiddenPropsHTMLSpan
-  extends JSX.HTMLAttributes<HTMLElement>,
-    DefaultProps {
+interface VisuallyHiddenPropsSpan extends JSX.HTMLAttributes<HTMLElement> {
   component: "span";
 }
 
-export const VisuallyHidden: Component<
-  VisuallyHiddenPropsHTMLInput | VisuallyHiddenPropsHTMLSpan
-> = (props): JSX.Element => (
-  <Dynamic
-    {...props}
-    component={props.component || "span"}
-    class="visually-hidden"
-    classList={{
-      [`${props.class}`]: !!props.class,
-      ...props.classList,
-    }}
-  />
-);
+export type VisuallyHiddenProps = (
+  | VisuallyHiddenPropsInput
+  | VisuallyHiddenPropsSpan
+) &
+  BaseProps;
+
+const VisuallyHidden: Component<VisuallyHiddenProps> = (props): JSX.Element => {
+  const [local, attributes] = splitProps(props, [
+    "class",
+    "classList",
+    "component",
+    "disabled",
+  ]);
+
+  return (
+    <Dynamic
+      class={`${styles.root} ${local.class || ""}`}
+      classList={{
+        ...local.classList,
+      }}
+      disabled={local.disabled}
+      component={local.component || "span"}
+      {...attributes}
+    />
+  );
+};
+
+export default VisuallyHidden;

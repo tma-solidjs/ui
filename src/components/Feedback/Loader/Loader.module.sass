@@ -2,27 +2,27 @@
   width: $size
   aspect-ratio: 1 / 1
 
-.loader
+.root
   position: relative
   display: flex
   align-items: center
   justify-content: center
 
-  &_size
-    &--s
+.size
+  &--s
+    +size(24px)
+
+    &:not(.loader--ios)
       +size(24px)
 
-      &:not(.loader--ios)
-        +size(24px)
+  &--m
+    +size(28px)
 
-    &--m
-      +size(28px)
+    &:not(.loader--ios)
+      +size(36px)
 
-      &:not(.loader--ios)
-        +size(36px)
+  &--l
+    +size(38px)
 
-    &--l
-      +size(38px)
-
-      &:not(.loader--ios)
-        +size(44px)
+    &:not(.loader--ios)
+      +size(44px)

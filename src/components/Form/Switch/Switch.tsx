@@ -1,38 +1,41 @@
-import "./Switch.sass";
+import styles from "./Switch.module.sass";
+
+import { type Component, type JSX, splitProps } from "solid-js";
 
 import { usePlatform } from "@/hooks";
 
-import { ComponentExtended } from "@/models";
 import { VisuallyHidden } from "@/components";
 
-interface SwitchProps {
+export interface SwitchProps extends JSX.HTMLAttributes<HTMLInputElement> {
   disabled?: boolean;
 }
 
-export const Switch: ComponentExtended<SwitchProps, HTMLInputElement> = (
-  props
-) => {
+const Switch: Component<SwitchProps> = (props) => {
   const platform = usePlatform();
+  const [local, attributes] = splitProps(props, [
+    "class",
+    "classList",
+    "disabled",
+  ]);
 
   return (
     <label
-      class="switch"
+      class={`${styles.root} ${styles[`root--${platform()}`]}  ${local.class || ""}`}
       classList={{
-        "switch--ios": platform().isIOS,
-        "switch--base": platform().isAndroid,
-        "switch--disabled": props.disabled,
-        [`${props.class}`]: !!props.class,
-        ...props.classList,
+        [styles.disabled]: local.disabled,
+        ...local.classList,
       }}
     >
       <VisuallyHidden
-        {...props}
+        {...attributes}
         component="input"
         type="checkbox"
-        class="switch__input"
+        class={styles.input}
       />
-      <div aria-hidden class={"switch__control"} />
+      <div aria-hidden class={styles.control} />
       {props.children}
     </label>
   );
 };
+
+export default Switch;
