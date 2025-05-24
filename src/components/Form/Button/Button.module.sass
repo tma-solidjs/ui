@@ -98,21 +98,18 @@
   z-index: var(--z-index--simple)
 
 .spinner
-  position: absolute
-  display: flex
-  align-items: center
-  justify-content: center
+  position: absolute !important
+  display: flex !important
+  align-items: center !important
+  justify-content: center !important
   cursor: auto
   background: inherit
   border-radius: inherit
   color: var(--button--spinner-color)
 
 .loading
-  .before,
-  .after,
-  .content
-    opacity: 0
-    display: none
+  & .before, .after, .content
+    opacity: 0 !important
 
 .stretched
   inline-size: 100%

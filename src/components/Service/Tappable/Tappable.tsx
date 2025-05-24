@@ -35,6 +35,10 @@ const Tappable: Component<TappableProps> = (props) => {
     "aria-readonly",
     "classList",
     "children",
+    "onClick",
+    "disabled",
+    "onPointerCancel",
+    "onPointerDown",
   ]);
 
   const hasRippleEffect = createMemo(
@@ -44,18 +48,15 @@ const Tappable: Component<TappableProps> = (props) => {
       !local["aria-readonly"],
   );
 
-  const handleOnClick = (e: MouseEvent) => {
-    if (attributes.disabled || typeof attributes.onClick !== "function") {
-      return;
-    }
-
-    attributes.onClick(e as any);
+  const handleOnClick = (e: JSX.EventHandler<HTMLButtonElement, Event>) => {
+    if (local.disabled || typeof local.onClick !== "function") return;
+    local.onClick(e as any);
   };
 
   return (
     <Dynamic
-      class={`${styles.root} ${styles[platform()]} ${local.class || ""}`}
       classList={{
+        [`${styles.root} ${styles[platform()]} ${local.class || ""}`]: true,
         [styles.opacity]: local.interactiveAnimation === "opacity",
         ...local.classList,
       }}
@@ -64,6 +65,7 @@ const Tappable: Component<TappableProps> = (props) => {
       onPointerDown={onPointerDown}
       readOnly={local["aria-readonly"]}
       onClick={handleOnClick}
+      disabled={local.disabled}
       {...attributes}
     >
       {hasRippleEffect() && <Ripple clicks={clicks()} />}

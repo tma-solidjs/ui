@@ -16,7 +16,7 @@ export default {
       {...props}
       header={"Title"}
       description={"Description"}
-      action={<Button>Action</Button>}
+      action={<Button loading>Action</Button>}
     >
       <Button>Test</Button>
     </Placeholder>

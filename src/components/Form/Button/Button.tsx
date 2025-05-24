@@ -6,6 +6,7 @@ import {
   type ValidComponent,
   mergeProps,
   splitProps,
+  Show,
 } from "solid-js";
 import { usePlatform } from "@/hooks";
 
@@ -54,7 +55,7 @@ const Button: Component<ButtonProps> = (props) => {
 
   return (
     <Tappable
-      class={`${styles.root} ${styles[`root--${local.size}`]} ${styles[`root_${local.mode}`]} ${local.class || ""}`}
+      class={`${styles.root} ${styles[`root--${local.size}`]} ${styles[`root_${local.mode}`]}`}
       classList={{
         [styles[`root--ios`]]: platform() === "ios",
         [styles.stretched]: local.stretched,
@@ -66,15 +67,21 @@ const Button: Component<ButtonProps> = (props) => {
       interactiveAnimation="background"
       onClick={handleOnClick}
     >
-      {local.loading && <Loader class={styles.spinner} size="s" />}
+      <Show when={local.loading}>
+        <Loader class={styles.spinner} size="s" />
+      </Show>
 
-      {local.before && <div class={styles.before}>{local.before}</div>}
+      <Show when={local.before}>
+        {(v) => <div class={styles.before}>{v()}</div>}
+      </Show>
 
       <ButtonTypography class={styles.content} size={local.size || "m"}>
         {local.children}
       </ButtonTypography>
 
-      {local.after && <div class={styles.after}>{local.after}</div>}
+      <Show when={local.after}>
+        {(v) => <div class={styles.after}>{v()}</div>}
+      </Show>
     </Tappable>
   );
 };
