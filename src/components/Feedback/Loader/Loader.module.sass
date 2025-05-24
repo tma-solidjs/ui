@@ -9,6 +9,12 @@
   justify-content: center
 
 .size
+  &--xs
+    +size(16px)
+
+    &:not(.loader--ios)
+      +size(16px)
+
   &--s
     +size(24px)
 

@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import path from "path";
 
 import solid from "vite-plugin-solid";
+import solidSvg from "vite-plugin-solid-svg";
 import tsconfigPaths from "vite-tsconfig-paths";
 // import visualizer from "vite-bundle-analyzer";
 import { optimizeCssModules } from "vite-plugin-optimize-css-modules";
@@ -13,6 +14,12 @@ export default defineConfig({
     // visualizer(),
     optimizeCssModules({
       apply: "build",
+    }),
+    solidSvg({
+      defaultAsComponent: true,
+      svgo: {
+        enabled: true,
+      },
     }),
   ],
   build: {

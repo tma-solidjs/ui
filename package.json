@@ -1,6 +1,6 @@
 {
   "name": "@tma-solidjs/ui",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Native platform UI Kit for your project on Solid.js",
   "main": "./dist/ui.cjs.js",
   "module": "./dist/ui.es.js",

@@ -3,11 +3,10 @@ import styles from "./Loader.module.sass";
 import { type Component, type JSX, splitProps } from "solid-js";
 import { usePlatform } from "@/hooks";
 
-import AndroidLoading from "./variants/android-loading.svg";
-import IosLoading from "./variants/ios-loading.svg";
+import { IconIOSLoader, IconAndroidLoader } from "@/assets/icons";
 
 interface LoaderProps extends JSX.HTMLAttributes<HTMLDivElement> {
-  size: "s" | "m" | "l";
+  size: "xs" | "s" | "m" | "l";
 }
 
 const Loader: Component<LoaderProps> = (props) => {
@@ -19,7 +18,7 @@ const Loader: Component<LoaderProps> = (props) => {
       class={`${styles.root} ${styles[`size--${props.size || "s"}`]} ${local.class || ""}`}
       {...attributes}
     >
-      {platform() === "ios" ? <IosLoading /> : <AndroidLoading />}
+      {platform() === "ios" ? <IconIOSLoader /> : <IconAndroidLoader />}
     </div>
   );
 };

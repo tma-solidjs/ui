@@ -4,7 +4,6 @@ import { default as useTimeout } from "./useTimeout";
 
 import { Wave } from "@/models";
 
-const RIPPLE_DELAY = 70;
 const WAVE_LIVE = 225;
 
 const useRipple = () => {
@@ -43,7 +42,7 @@ const useRipple = () => {
 
     pointerDelayTimers().set(
       e.pointerId,
-      setTimeout(() => addClick(x, y, e.pointerId), RIPPLE_DELAY),
+      setTimeout(() => addClick(x, y, e.pointerId), 70),
     );
   };
 
