@@ -1,6 +1,12 @@
 import styles from "./Image.module.sass";
 
-import { type Component, type JSX, createSignal, splitProps } from "solid-js";
+import {
+  type Component,
+  type JSX,
+  createSignal,
+  splitProps,
+  Show,
+} from "solid-js";
 
 import { Loader } from "@/components";
 
@@ -37,8 +43,15 @@ const Image: Component<ImageProps> = (props) => {
       class={`${styles.root} ${local.class || ""}`}
       style={Object.assign({}, local.style || {})}
     >
-      {isError() && local.fallbackIcon}
-      {isLoading() && <Loader size={local.loaderSize || "s"} />}
+      <Show
+        when={isError() && local.fallbackIcon}
+        children={local.fallbackIcon}
+      />
+      <Show
+        when={isLoading()}
+        children={<Loader size={local.loaderSize || "s"} />}
+      />
+
       <img
         class={`${styles.image} ${(isLoading() || isError()) && styles.hide}`}
         classList={{ ...local.classList }}

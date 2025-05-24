@@ -1,6 +1,7 @@
 import styles from "./Loader.module.sass";
 
-import { type Component, type JSX, splitProps } from "solid-js";
+import { type Component, type JSX, Match, splitProps, Switch } from "solid-js";
+
 import { usePlatform } from "@/hooks";
 
 import { IconIOSLoader, IconAndroidLoader } from "@/assets/icons";
@@ -18,7 +19,13 @@ const Loader: Component<LoaderProps> = (props) => {
       class={`${styles.root} ${styles[`size--${props.size || "s"}`]} ${local.class || ""}`}
       {...attributes}
     >
-      {platform() === "ios" ? <IconIOSLoader /> : <IconAndroidLoader />}
+      <Switch>
+        <Match when={platform() === "ios"} children={<IconIOSLoader />} />
+        <Match
+          when={platform() === "android"}
+          children={<IconAndroidLoader />}
+        />
+      </Switch>
     </div>
   );
 };

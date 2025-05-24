@@ -1,6 +1,6 @@
 import styles from "./Panel.module.sass";
 
-import type { Component, JSX } from "solid-js";
+import { type Component, type JSX, splitProps } from "solid-js";
 
 import { usePlatform } from "@/hooks";
 
@@ -11,21 +11,25 @@ export interface PanelProps extends JSX.HTMLAttributes<HTMLDivElement> {
 
 const Panel: Component<PanelProps> = (props) => {
   const platform = usePlatform();
+  const [local, attributes] = splitProps(props, [
+    "class",
+    "wrapperClassList",
+    "wrapperClass",
+    "children",
+  ]);
 
   return (
     <div
-      class={`${styles.root} ${styles[platform()]} ${props.class || ""}`}
-      classList={{
-        ...props.classList,
-      }}
+      {...attributes}
+      class={`${styles.root} ${styles[platform()]} ${local.class || ""}`}
     >
       <div
-        class={`${styles.wrapper} ${props.wrapperClass || ""}`}
+        class={`${styles.wrapper} ${local.wrapperClass || ""}`}
         classList={{
-          ...props.wrapperClassList,
+          ...local.wrapperClassList,
         }}
       >
-        {props.children}
+        {local.children}
       </div>
     </div>
   );
