@@ -33,8 +33,9 @@ const VisuallyHidden: Component<VisuallyHiddenProps> = (props): JSX.Element => {
 
   return (
     <Dynamic
-      class={`${styles.root} ${local.class || ""}`}
+      class={styles.root}
       classList={{
+        [`${local.class}`]: !!local.class,
         ...local.classList,
       }}
       disabled={local.disabled}

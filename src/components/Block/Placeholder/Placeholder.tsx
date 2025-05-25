@@ -25,8 +25,9 @@ const Placeholder: Component<PlaceholderProps> = (props) => {
   return (
     <section
       {...attributes}
-      class={`${styles.root} ${local.class || ""}`}
+      class={styles.root}
       classList={{
+        [`${local.class}`]: !!local.class,
         ...local.classList,
       }}
     >
@@ -41,7 +42,7 @@ const Placeholder: Component<PlaceholderProps> = (props) => {
           </Show>
 
           <Show when={local.description}>
-            <Text class={`${styles.description}`} component={"dd"}>
+            <Text class={styles.description} component={"dd"}>
               {local.description}
             </Text>
           </Show>

@@ -11,11 +11,12 @@ const Text: Component<TextProps> = (props) => {
 
   return (
     <Typography
-      class={`${styles.root} ${local.class || ""}`}
+      {...attributes}
+      class={styles.root}
       classList={{
+        [`${local.class}`]: !!local.class,
         ...local.classList,
       }}
-      {...attributes}
     />
   );
 };

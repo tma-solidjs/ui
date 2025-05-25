@@ -55,8 +55,10 @@ const Button: Component<ButtonProps> = (props) => {
 
   return (
     <Tappable
-      class={`${styles.root} ${styles[`root--${local.size}`]} ${styles[`root_${local.mode}`]}`}
+      class={styles.root}
       classList={{
+        [styles[`root--${local.size}`]]: true,
+        [styles[`root_${local.mode}`]]: true,
         [styles[`root--ios`]]: platform() === "ios",
         [styles.stretched]: local.stretched,
         [styles.loading]: local.loading,

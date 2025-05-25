@@ -13,6 +13,7 @@ const Panel: Component<PanelProps> = (props) => {
   const platform = usePlatform();
   const [local, attributes] = splitProps(props, [
     "class",
+    "classList",
     "wrapperClassList",
     "wrapperClass",
     "children",
@@ -21,11 +22,17 @@ const Panel: Component<PanelProps> = (props) => {
   return (
     <div
       {...attributes}
-      class={`${styles.root} ${styles[platform()]} ${local.class || ""}`}
+      class={styles.root}
+      classList={{
+        [styles[`root--ios`]]: platform() === "ios",
+        [`${local.class}`]: !!local.class,
+        ...local.classList,
+      }}
     >
       <div
-        class={`${styles.wrapper} ${local.wrapperClass || ""}`}
+        class={styles.wrapper}
         classList={{
+          [`${local.wrapperClass}`]: !!local.wrapperClass,
           ...local.wrapperClassList,
         }}
       >

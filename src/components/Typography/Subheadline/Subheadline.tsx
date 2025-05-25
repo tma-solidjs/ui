@@ -22,12 +22,13 @@ const Subheadline: Component<SubheadlineProps> = (props) => {
 
   return (
     <Typography
-      class={`${styles[`root--${local.level}`]} ${local.class || ""}`}
+      {...attributes}
       classList={{
+        [styles[`root--${local.level}`]]: true,
+        [`${local.class}`]: !!local.class,
         ...local.classList,
       }}
       component={local.component || "h6"}
-      {...attributes}
     />
   );
 };

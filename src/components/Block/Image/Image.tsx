@@ -10,10 +10,12 @@ import {
 
 import { Loader } from "@/components";
 
-export interface ImageProps extends JSX.HTMLAttributes<HTMLImageElement> {
+export interface ImageProps extends JSX.HTMLAttributes<HTMLDivElement> {
   src: string;
   fallbackIcon?: JSX.Element;
   loaderSize?: "xs" | "s" | "m";
+  imageClass?: string;
+  imageClassList?: Record<string, boolean>;
 }
 
 const Image: Component<ImageProps> = (props) => {
@@ -26,6 +28,8 @@ const Image: Component<ImageProps> = (props) => {
     "fallbackIcon",
     "style",
     "loaderSize",
+    "imageClass",
+    "imageClassList",
   ]);
 
   const handleLoad = () => {
@@ -40,7 +44,12 @@ const Image: Component<ImageProps> = (props) => {
 
   return (
     <div
-      class={`${styles.root} ${local.class || ""}`}
+      {...attributes}
+      class={styles.root}
+      classList={{
+        [`${local.class}`]: !!local.class,
+        ...local.classList,
+      }}
       style={Object.assign({}, local.style || {})}
     >
       <Show
@@ -53,13 +62,16 @@ const Image: Component<ImageProps> = (props) => {
       />
 
       <img
-        class={`${styles.image} ${(isLoading() || isError()) && styles.hide}`}
-        classList={{ ...local.classList }}
+        class={styles.image}
+        classList={{
+          [styles.hide]: isLoading() || isError(),
+          [`${local.imageClass}`]: !!local.imageClass,
+          ...local.imageClassList,
+        }}
         src={local.src}
         alt={""}
         onLoad={handleLoad}
         onError={handleError}
-        {...attributes}
       />
     </div>
   );

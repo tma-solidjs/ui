@@ -12,12 +12,17 @@ interface LoaderProps extends JSX.HTMLAttributes<HTMLDivElement> {
 
 const Loader: Component<LoaderProps> = (props) => {
   const platform = usePlatform();
-  const [local, attributes] = splitProps(props, ["class"]);
+  const [local, attributes] = splitProps(props, ["class", "classList"]);
 
   return (
     <div
-      class={`${styles.root} ${styles[`size--${props.size || "s"}`]} ${local.class || ""}`}
       {...attributes}
+      class={styles.root}
+      classList={{
+        [styles[`size--${props.size || "s"}`]]: true,
+        [`${local.class}`]: !!local.class,
+        ...local.classList,
+      }}
     >
       <Switch>
         <Match when={platform() === "ios"} children={<IconIOSLoader />} />

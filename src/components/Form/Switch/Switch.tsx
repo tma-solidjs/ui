@@ -20,9 +20,11 @@ const Switch: Component<SwitchProps> = (props) => {
 
   return (
     <label
-      class={`${styles.root} ${styles[`root--${platform()}`]}  ${local.class || ""}`}
+      class={styles.root}
       classList={{
+        [styles[`root--${platform()}`]]: !!platform(),
         [styles.disabled]: local.disabled,
+        [`${local.class}`]: !!local.class,
         ...local.classList,
       }}
     >
@@ -30,6 +32,7 @@ const Switch: Component<SwitchProps> = (props) => {
         {...attributes}
         component="input"
         type="checkbox"
+        disabled={local.disabled}
         class={styles.input}
       />
       <div aria-hidden class={styles.control} />

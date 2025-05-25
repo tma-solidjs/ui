@@ -36,10 +36,11 @@ const Typography: Component<TypographyProps> = (props) => {
   return (
     <Dynamic
       {...attributes}
-      class={`${styles[`root-${local.weight}`]} ${local.class || ""}`}
       classList={{
+        [styles[`root-${local.weight}`]]: true,
         [styles.plain]: local.plain,
         [styles.caps]: local.caps,
+        [`${local.class}`]: !!local.class,
         ...local.classList,
       }}
       component={local.component}

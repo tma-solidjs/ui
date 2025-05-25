@@ -31,8 +31,11 @@ const Avatar: Component<AvatarProps> = (props) => {
 
   return (
     <Image
-      class={`${styles.root} ${styles[`root_${local.mode}`]} ${local.class || ""}`}
+      {...attributes}
+      class={styles.root}
       classList={{
+        [styles[`root_${local.mode}`]]: true,
+        [`${local.class}`]: !!local.class,
         ...local.classList,
       }}
       style={Object.assign(
@@ -53,7 +56,6 @@ const Avatar: Component<AvatarProps> = (props) => {
             ? "s"
             : "xs"
       }
-      {...attributes}
     />
   );
 };

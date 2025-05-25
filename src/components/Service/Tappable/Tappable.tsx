@@ -55,9 +55,11 @@ const Tappable: Component<TappableProps> = (props) => {
 
   return (
     <Dynamic
+      {...attributes}
+      class={styles.root}
       classList={{
-        [`${styles.root} ${styles[platform()]} ${local.class || ""}`]: true,
-        [styles.opacity]: local.interactiveAnimation === "opacity",
+        [styles[platform()]]: true,
+        [`${local.class}`]: !!local.class,
         ...local.classList,
       }}
       component={local.component}
@@ -66,7 +68,6 @@ const Tappable: Component<TappableProps> = (props) => {
       readOnly={local["aria-readonly"]}
       onClick={handleOnClick}
       disabled={local.disabled}
-      {...attributes}
     >
       {hasRippleEffect() && <Ripple clicks={clicks()} />}
       {local.children}
