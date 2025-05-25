@@ -9,7 +9,7 @@ type Story = StoryObj<PlaceholderProps>;
 export const Default: Story = {};
 
 export default {
-  title: "UI Kit/ Placeholder",
+  title: "UI Kit/Placeholder",
   tags: ["autodocs"],
   render: (props) => (
     <Placeholder

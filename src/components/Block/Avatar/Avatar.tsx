@@ -6,7 +6,7 @@ import { Image } from "@/components";
 
 import { IconUser } from "@/assets/icons";
 
-export interface AvatarProps extends JSX.HTMLAttributes<HTMLImageElement> {
+export interface AvatarProps extends JSX.HTMLAttributes<HTMLDivElement> {
   src: string;
   size?: 20 | 24 | 28 | 32 | 36 | 40 | 42 | 48 | 56 | 72 | 96;
   mode?: "circle" | "rounded";
