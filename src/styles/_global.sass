@@ -5,14 +5,16 @@
   --border--width: 1px
   --base--section--box_shadow: 0 1px 2px 0 rgba(0, 0, 0, .10)
 
-  @media (min-resolution: 2dppx)
-    --border--width: .5px
+  --safe_area_inset_bottom: calc(100vh - var(--tg-viewport-stable-height, 100vh))
 
   @supports (padding-top: constant(safe-area-inset-bottom))
     --safe_area_inset_bottom: constant(safe-area-inset-bottom)
 
   @supports (padding-top: env(safe-area-inset-bottom))
     --safe_area_inset_bottom: env(safe-area-inset-bottom)
+
+  @media (min-resolution: 2dppx)
+    --border--width: .5px
 
 html, body
   background: var(--bg_color)
