@@ -37,6 +37,7 @@ const Typography: Component<TypographyProps> = (props) => {
     <Dynamic
       {...attributes}
       classList={{
+        [styles.root]: true,
         [styles[`root-${local.weight}`]]: true,
         [styles.plain]: local.plain,
         [styles.caps]: local.caps,
