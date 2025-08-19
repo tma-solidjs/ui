@@ -10,7 +10,7 @@ import {
 } from "solid-js";
 import { usePlatform } from "@/hooks";
 
-import { Tappable, Loader, ButtonTypography } from "@/components";
+import { Tappable, Loader, ButtonTypography } from "@/index";
 
 export interface ButtonProps extends JSX.HTMLAttributes<HTMLButtonElement> {
   before?: JSX.Element;

@@ -7,7 +7,7 @@ import {
   splitProps,
 } from "solid-js";
 
-import { Typography, type TypographyProps } from "@/components";
+import { Typography, type TypographyProps } from "@/index";
 
 type TitleLevel = "1" | "2" | "3";
 

@@ -1,4 +1,4 @@
-import "@/styles/index.sass";
+import "./styles/root.sass";
 
 import { type JSX, type Component } from "solid-js";
 

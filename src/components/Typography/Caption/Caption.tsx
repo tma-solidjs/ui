@@ -2,7 +2,7 @@ import styles from "./Caption.module.sass";
 
 import { type Component, mergeProps, splitProps } from "solid-js";
 
-import { Typography, type TypographyProps } from "@/components";
+import { Typography, type TypographyProps } from "@/index";
 
 export interface CaptionProps extends Omit<TypographyProps, "plain"> {
   level?: "1" | "2";

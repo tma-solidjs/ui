@@ -11,7 +11,7 @@ import {
 import { useRipple, usePlatform } from "@/hooks";
 
 import { Dynamic } from "solid-js/web";
-import { Ripple } from "@/components";
+import { Ripple } from "@/index";
 
 export interface TappableProps extends JSX.HTMLAttributes<HTMLElement> {
   component?: ValidComponent;

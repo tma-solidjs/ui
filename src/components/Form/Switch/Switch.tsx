@@ -4,7 +4,7 @@ import { type Component, type JSX, splitProps } from "solid-js";
 
 import { usePlatform } from "@/hooks";
 
-import { VisuallyHidden } from "@/components";
+import { VisuallyHidden } from "@/index";
 
 export interface SwitchProps extends JSX.HTMLAttributes<HTMLInputElement> {
   disabled?: boolean;

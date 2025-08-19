@@ -2,7 +2,7 @@ import styles from "./Placeholder.module.sass";
 
 import { type Component, type JSX, Show, splitProps } from "solid-js";
 
-import { Text, Title } from "@/components";
+import { Text, Title } from "@/index";
 
 export interface PlaceholderProps
   extends Omit<JSX.HTMLAttributes<HTMLElement>, "title"> {

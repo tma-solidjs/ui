@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/html";
 import type { ComponentProps } from "solid-js";
 
 import { default as Cell, CellProps } from "./Cell";
-import { Button } from "@/components";
+import { Button } from "@/index";
 import { IconUser } from "@/assets/icons";
 import { JSX } from "solid-js/types/jsx";
 

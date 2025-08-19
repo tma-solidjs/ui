@@ -3,7 +3,7 @@ import styles from "./CellButton.module.sass";
 import { type Component, type JSX, Show, splitProps } from "solid-js";
 import { usePlatform } from "@/hooks";
 
-import { Text, Subheadline, Tappable } from "@/components";
+import { Text, Subheadline, Tappable } from "@/index";
 
 export interface CellButtonProps
   extends Omit<JSX.HTMLAttributes<HTMLElement>, "title"> {

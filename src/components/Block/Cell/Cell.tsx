@@ -9,7 +9,7 @@ import {
   Tappable,
   Caption,
   type TypographyProps,
-} from "@/components";
+} from "@/index";
 
 export interface CellProps
   extends Omit<JSX.HTMLAttributes<HTMLElement>, "title"> {

@@ -1,6 +1,6 @@
 import { type Component, mergeProps, splitProps } from "solid-js";
 
-import { Subheadline, Text, type TypographyProps } from "@/components";
+import { Subheadline, Text, type TypographyProps } from "@/index";
 
 export interface ButtonTypographyProps extends Omit<TypographyProps, "size"> {
   size: "s" | "m" | "l";

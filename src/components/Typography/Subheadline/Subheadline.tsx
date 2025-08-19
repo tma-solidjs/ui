@@ -2,7 +2,7 @@ import styles from "./Subheadline.module.sass";
 
 import { type Component, mergeProps, splitProps } from "solid-js";
 
-import { Typography, type TypographyProps } from "@/components";
+import { Typography, type TypographyProps } from "@/index";
 
 export interface SubheadlineProps extends TypographyProps {
   level?: "1" | "2";

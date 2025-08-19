@@ -2,7 +2,7 @@ import styles from "./LargeTitle.module.sass";
 
 import { type Component, splitProps } from "solid-js";
 
-import { Typography, type TypographyProps } from "@/components";
+import { Typography, type TypographyProps } from "@/index";
 
 export interface LargeTitleProps extends TypographyProps {}
 

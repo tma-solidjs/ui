@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/html";
 import type { ComponentProps } from "solid-js";
 
 import { default as Placeholder, PlaceholderProps } from "./Placeholder";
-import { Button } from "@/components";
+import { Button } from "@/index";
 
 type Story = StoryObj<PlaceholderProps>;
 

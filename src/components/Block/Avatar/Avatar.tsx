@@ -2,7 +2,7 @@ import styles from "./Avatar.module.sass";
 
 import { type Component, type JSX, mergeProps, splitProps } from "solid-js";
 
-import { Image } from "@/components";
+import { Image } from "@/index";
 
 import { IconUser } from "@/assets/icons";
 

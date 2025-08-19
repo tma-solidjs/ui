@@ -8,7 +8,7 @@ import {
   Show,
 } from "solid-js";
 
-import { Loader } from "@/components";
+import { Loader } from "@/index";
 
 export interface ImageProps extends JSX.HTMLAttributes<HTMLDivElement> {
   src: string;

@@ -1,11 +1,16 @@
 import { defineConfig } from "vite";
-import path from "path";
+
+import { extname, relative, resolve } from "path";
+import { fileURLToPath } from "node:url";
+import { glob } from "glob";
 
 import solid from "vite-plugin-solid";
 import solidSvg from "vite-plugin-solid-svg";
 import tsconfigPaths from "vite-tsconfig-paths";
 // import visualizer from "vite-bundle-analyzer";
 import { optimizeCssModules } from "vite-plugin-optimize-css-modules";
+import dts from "vite-plugin-dts";
+import { libInjectCss } from "vite-plugin-lib-inject-css";
 
 export default defineConfig({
   plugins: [
@@ -21,20 +26,30 @@ export default defineConfig({
         enabled: true,
       },
     }),
+    dts({ rollupTypes: true }),
+    libInjectCss(),
   ],
   build: {
     lib: {
-      entry: path.resolve(__dirname, "src/index.ts"),
+      entry: resolve(__dirname, "src/index.ts"),
       name: "@tma-solidjs/ui",
-      formats: ["es", "cjs"],
-      fileName: (format) => `ui.${format}.js`,
+      formats: ["es"],
     },
     rollupOptions: {
       external: ["solid-js", "solid-js/web", "solid-js/store"],
+      input: Object.fromEntries(
+        glob
+          .sync("src/**/*.{ts,tsx}", {
+            ignore: ["src/**/*.d.ts", "src/**/*.stories.tsx"],
+          })
+          .map((file) => [
+            relative("src", file.slice(0, file.length - extname(file).length)),
+            fileURLToPath(new URL(file, import.meta.url)),
+          ]),
+      ),
       output: {
-        globals: {
-          "solid-js": "solidJs",
-        },
+        assetFileNames: "assets/[name][extname]",
+        entryFileNames: "[name].js",
       },
     },
     outDir: "dist",
@@ -83,7 +98,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
+      "@": resolve(__dirname, "src"),
     },
   },
 });
