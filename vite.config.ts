@@ -16,9 +16,6 @@ export default defineConfig({
   plugins: [
     solid(),
     tsconfigPaths(),
-    optimizeCssModules({
-      apply: "build",
-    }),
     solidSvg({
       defaultAsComponent: true,
       svgo: {

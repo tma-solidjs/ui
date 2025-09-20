@@ -19,21 +19,31 @@
   @media (min-resolution: 2dppx)
     --border--width: .5px
 
-html, body
-  background: var(--header_bg_color, var(--bg_color))
-  color: var(--text_color)
-  overscroll-behavior-x: none
-  scrollbar-width: none
-  overflow: hidden
-  overflow: clip
-  touch-action: none
-
-  &::-webkit-scrollbar
-    display: none
-
 body
   position: fixed
   inset: 0
 
-*
-  -webkit-font-smoothing: antialiased !important
+html, body, #root
+  overscroll-behavior-x: none
+  scrollbar-width: none
+
+html, body
+  background: var(--header_bg_color, var(--bg_color))
+  color: var(--text_color)
+  overflow: hidden
+  overflow: clip
+  touch-action: none
+
+body::-webkit-scrollbar
+  display: none
+
+#root
+  position: relative
+  height: 100%
+  width: 100%
+  overflow-x: hidden
+  overflow-y: auto
+  overflow-x: clip
+  overflow-y: auto
+  -webkit-overflow-scrolling: touch
+  -ms-overflow-style: none
