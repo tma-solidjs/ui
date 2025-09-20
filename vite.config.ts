@@ -7,8 +7,8 @@ import { glob } from "glob";
 import solid from "vite-plugin-solid";
 import solidSvg from "vite-plugin-solid-svg";
 import tsconfigPaths from "vite-tsconfig-paths";
-import visualizer from "vite-bundle-analyzer";
-import { optimizeCssModules } from "vite-plugin-optimize-css-modules";
+// import visualizer from "vite-bundle-analyzer";
+// import { optimizeCssModules } from "vite-plugin-optimize-css-modules";
 import dts from "vite-plugin-dts";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
 
@@ -50,34 +50,15 @@ export default defineConfig({
       },
     },
     outDir: "dist",
-    emptyOutDir: true,
+    emptyOutDir: false,
     cssMinify: "lightningcss",
     cssCodeSplit: true,
     minify: "terser",
     terserOptions: {
-      ecma: 2020,
       compress: {
         drop_console: true,
         drop_debugger: true,
         pure_funcs: ["console.log", "console.info", "console.debug"],
-        passes: 3,
-        keep_fargs: false,
-        toplevel: true,
-        unsafe: true,
-        unsafe_arrows: true,
-        unsafe_comps: true,
-        unsafe_Function: true,
-        unsafe_math: true,
-        unsafe_methods: true,
-        unsafe_proto: true,
-        unsafe_regexp: true,
-        unsafe_undefined: true,
-      },
-      mangle: {
-        toplevel: true,
-        properties: {
-          regex: /^_/,
-        },
       },
       format: {
         comments: false,

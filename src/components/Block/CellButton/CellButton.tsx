@@ -1,6 +1,12 @@
 import styles from "./CellButton.module.sass";
 
-import { type Component, type JSX, Show, splitProps } from "solid-js";
+import {
+  type Component,
+  type JSX,
+  mergeProps,
+  Show,
+  splitProps,
+} from "solid-js";
 import { usePlatform } from "@/hooks";
 
 import { Text, Subheadline, Tappable } from "@/index";
@@ -14,9 +20,13 @@ export interface CellButtonProps
   titleBadge?: JSX.Element;
 }
 
+const defaultProps: Partial<CellButtonProps> = {
+  mode: "default",
+};
+
 const CellButton: Component<CellButtonProps> = (props) => {
   const platform = usePlatform();
-  const [local, attributes] = splitProps(props, [
+  const [local, attributes] = splitProps(mergeProps(defaultProps, props), [
     "class",
     "classList",
     "after",
@@ -33,8 +43,7 @@ const CellButton: Component<CellButtonProps> = (props) => {
       {...attributes}
       class={styles.root}
       classList={{
-        [styles[`root--${local.mode}`]]: local.mode === "destructive",
-        [styles[`root--ios`]]: platform() === "ios",
+        [styles[`root--${local.mode}`]]: true,
         [`${local.class}`]: !!local.class,
         ...local.classList,
       }}

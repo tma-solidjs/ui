@@ -2,7 +2,6 @@
 export {
   Avatar,
   Placeholder,
-  Panel,
   Image,
   Cell,
   CellButton,

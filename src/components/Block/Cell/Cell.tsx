@@ -20,6 +20,8 @@ export interface CellProps
   description?: string;
   hint?: string;
   children: string;
+  hovered?: boolean;
+  multiline?: boolean;
   titleBadge?: JSX.Element;
 }
 
@@ -36,6 +38,8 @@ const Cell: Component<CellProps> = (props) => {
     "description",
     "titleBadge",
     "hint",
+    "hovered",
+    "multiline",
   ]);
 
   const Title = (props: TypographyProps) =>
@@ -57,6 +61,8 @@ const Cell: Component<CellProps> = (props) => {
       {...attributes}
       class={styles.root}
       classList={{
+        [styles["root--hovered"]]: local.hovered,
+        [styles["root--multiline"]]: local.multiline,
         [`${local.class}`]: !!local.class,
         ...local.classList,
       }}

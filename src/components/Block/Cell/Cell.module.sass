@@ -1,26 +1,28 @@
 .root
+  --gap: 24px
+  --padding: 0 24px
   --middle-padding: 16px 0
   display: flex
   align-items: center
-  gap: 24px
-  padding: 0 24px
+  gap: var(--gap)
+  padding: var(--padding)
 
-.wrapper
+  html[data-platform="ios"] &
+    --gap: 16px
+    --padding: 0 16px
+    --middle-padding: 12px 0
+
   &--hovered
     background: var(--tertiary_bg_color)
 
-  &--ios
-    --middle-padding: 12px 0
-    gap: 16px
-    padding: 0 16px
+  &:not(&--multiline)
+    .middle > *,
+    .title
+      white-space: nowrap
 
   @media (hover: hover) and (pointer: fine)
     &:hover
       background: var(--tertiary_bg_color)
-
-  &:not(.wrapper--multiline) .middle > *,
-  &:not(.wrapper--multiline) .title
-    white-space: nowrap
 
 .middle 
   display: flex
@@ -35,21 +37,15 @@
     overflow: hidden
     text-overflow: ellipsis
 
-.subhead 
-  color: var(--subtitle_text_color)
-
 .head 
   display: inline-flex
   align-items: center
   gap: 4px
 
-.hint 
-  color: var(--hint_color)
+.subhead
+  color: var(--subtitle_text_color)
 
-.subtitle 
-  color: var(--hint_color)
-
-.description 
+.hint, .subtitle, .description
   color: var(--hint_color)
 
 .before,

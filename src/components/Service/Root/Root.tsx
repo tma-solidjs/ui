@@ -1,20 +1,21 @@
 import "./styles/root.sass";
 
-import { type JSX, type Component, onMount } from "solid-js";
+import { type JSX, type Component, createEffect } from "solid-js";
 
 import { usePlatform } from "@/hooks";
 
-export interface ImageProps {
+export interface RootProps {
   children: JSX.Element;
   theme: "light" | "dark";
+  platform?: string;
 }
 
-const Root: Component<ImageProps> = (props) => {
+const Root: Component<RootProps> = (props) => {
   const platform = usePlatform();
 
-  onMount(() => {
+  createEffect(() => {
     document.documentElement.dataset.theme = props.theme;
-    document.documentElement.dataset.platform = platform();
+    document.documentElement.dataset.platform = props.platform || platform();
   });
 
   return props.children;
