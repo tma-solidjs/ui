@@ -7,7 +7,7 @@ import { glob } from "glob";
 import solid from "vite-plugin-solid";
 import solidSvg from "vite-plugin-solid-svg";
 import tsconfigPaths from "vite-tsconfig-paths";
-// import visualizer from "vite-bundle-analyzer";
+import visualizer from "vite-bundle-analyzer";
 import { optimizeCssModules } from "vite-plugin-optimize-css-modules";
 import dts from "vite-plugin-dts";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
@@ -16,7 +16,6 @@ export default defineConfig({
   plugins: [
     solid(),
     tsconfigPaths(),
-    // visualizer(),
     optimizeCssModules({
       apply: "build",
     }),
@@ -28,6 +27,7 @@ export default defineConfig({
     }),
     dts({ rollupTypes: true }),
     libInjectCss(),
+    // visualizer(),
   ],
   build: {
     lib: {

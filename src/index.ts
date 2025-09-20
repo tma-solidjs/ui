@@ -9,7 +9,7 @@ export {
 } from "./components/Block";
 
 // Feedback
-export { Loader, Ripple } from "./components/Feedback";
+export { Loader, Ripple, Skeleton } from "./components/Feedback";
 
 // Form
 export { Button, Switch } from "./components/Form";

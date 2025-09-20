@@ -1,5 +1,3 @@
-import "../src/styles/index.sass";
-
 import { render } from "solid-js/web";
 
 export const decorators = [

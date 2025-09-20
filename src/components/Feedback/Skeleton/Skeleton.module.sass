@@ -1,0 +1,13 @@
+.root
+  display: inline-block
+  opacity: .75
+  animation: skeleton-animate 1s linear infinite alternate
+  width: var(--skeleton-width)
+  height: var(--skeleton-height)
+  border-radius: 0.15rem
+
+  @keyframes skeleton-animate
+    from
+      background: hsl(200deg, 0%, 90%)
+    to
+      background: hsl(200deg, 0%, 75%)
