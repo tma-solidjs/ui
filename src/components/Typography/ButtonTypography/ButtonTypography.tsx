@@ -6,20 +6,18 @@ export interface ButtonTypographyProps extends Omit<TypographyProps, "size"> {
   size: "s" | "m" | "l";
 }
 
-const defaultProps: ButtonTypographyProps = {
+const defaultProps: Partial<ButtonTypographyProps> = {
   size: "m",
 };
 
 const ButtonTypography: Component<ButtonTypographyProps> = (props) => {
-  const [local, attributes] = splitProps(mergeProps(defaultProps, props), [
-    "size",
-  ]);
+  const [local, attrs] = splitProps(mergeProps(defaultProps, props), ["size"]);
 
   if (local.size === "l") {
-    return <Text weight="2" {...attributes} />;
+    return <Text weight="2" {...attrs} />;
   }
 
-  return <Subheadline level="2" weight="2" {...attributes} />;
+  return <Subheadline level="2" weight="2" {...attrs} />;
 };
 
 export default ButtonTypography;

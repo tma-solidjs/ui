@@ -8,12 +8,12 @@ export interface CaptionProps extends Omit<TypographyProps, "plain"> {
   level?: "1" | "2";
 }
 
-const defaultProps: CaptionProps = {
+const defaultProps: Partial<CaptionProps> = {
   level: "1",
 };
 
 const Caption: Component<CaptionProps> = (props) => {
-  const [local, attributes] = splitProps(mergeProps(defaultProps, props), [
+  const [local, attrs] = splitProps(mergeProps(defaultProps, props), [
     "level",
     "class",
     "classList",
@@ -22,7 +22,7 @@ const Caption: Component<CaptionProps> = (props) => {
 
   return (
     <Typography
-      {...attributes}
+      {...attrs}
       classList={{
         [styles[`root-${local.level}`]]: true,
         [`${local.class}`]: !!local.class,

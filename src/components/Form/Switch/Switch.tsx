@@ -12,11 +12,7 @@ export interface SwitchProps extends JSX.HTMLAttributes<HTMLInputElement> {
 
 const Switch: Component<SwitchProps> = (props) => {
   const platform = usePlatform();
-  const [local, attributes] = splitProps(props, [
-    "class",
-    "classList",
-    "disabled",
-  ]);
+  const [local, attrs] = splitProps(props, ["class", "classList", "disabled"]);
 
   return (
     <label
@@ -29,7 +25,7 @@ const Switch: Component<SwitchProps> = (props) => {
       }}
     >
       <VisuallyHidden
-        {...attributes}
+        {...attrs}
         component="input"
         type="checkbox"
         disabled={local.disabled}

@@ -16,7 +16,7 @@ export interface TypographyProps extends JSX.HTMLAttributes<HTMLElement> {
   weight?: "1" | "2" | "3";
 }
 
-const defaultProps: TypographyProps = {
+const defaultProps: Partial<TypographyProps> = {
   caps: false,
   plain: true,
   weight: "3",
@@ -24,7 +24,7 @@ const defaultProps: TypographyProps = {
 };
 
 const Typography: Component<TypographyProps> = (props) => {
-  const [local, attributes] = splitProps(mergeProps(defaultProps, props), [
+  const [local, attrs] = splitProps(mergeProps(defaultProps, props), [
     "class",
     "classList",
     "component",
@@ -35,7 +35,7 @@ const Typography: Component<TypographyProps> = (props) => {
 
   return (
     <Dynamic
-      {...attributes}
+      {...attrs}
       classList={{
         [styles.root]: true,
         [styles[`root-${local.weight}`]]: true,

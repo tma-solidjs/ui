@@ -13,13 +13,13 @@ export interface AvatarProps extends JSX.HTMLAttributes<HTMLDivElement> {
   borderRadius?: number;
 }
 
-const defaultProps: Omit<AvatarProps, "src"> = {
+const defaultProps: Partial<AvatarProps> = {
   size: 40,
   mode: "circle",
 };
 
 const Avatar: Component<AvatarProps> = (props) => {
-  const [local, attributes] = splitProps(mergeProps(defaultProps, props), [
+  const [local, attrs] = splitProps(mergeProps(defaultProps, props), [
     "class",
     "classList",
     "src",
@@ -31,7 +31,7 @@ const Avatar: Component<AvatarProps> = (props) => {
 
   return (
     <Image
-      {...attributes}
+      {...attrs}
       class={styles.root}
       classList={{
         [styles[`root_${local.mode}`]]: true,

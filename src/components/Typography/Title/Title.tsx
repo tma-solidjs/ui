@@ -21,10 +21,10 @@ const titleLevelTags: Record<TitleLevel, ValidComponent> = {
   "3": "h4",
 };
 
-const defaultProps: TitleProps = { level: "2" };
+const defaultProps: Partial<TitleProps> = { level: "2" };
 
 const Title: Component<TitleProps> = (props) => {
-  const [local, attributes] = splitProps(mergeProps(defaultProps, props), [
+  const [local, attrs] = splitProps(mergeProps(defaultProps, props), [
     "level",
     "class",
     "classList",
@@ -33,7 +33,7 @@ const Title: Component<TitleProps> = (props) => {
 
   return (
     <Typography
-      {...attributes}
+      {...attrs}
       classList={{
         [styles[`root-${local.level}`]]: true,
         [`${local.class}`]: !!local.class,

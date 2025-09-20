@@ -21,7 +21,7 @@ export interface ImageProps extends JSX.HTMLAttributes<HTMLDivElement> {
 const Image: Component<ImageProps> = (props) => {
   const [isLoading, setLoading] = createSignal<boolean>(true);
   const [isError, setError] = createSignal<boolean>(false);
-  const [local, attributes] = splitProps(props, [
+  const [local, attrs] = splitProps(props, [
     "class",
     "classList",
     "src",
@@ -44,7 +44,7 @@ const Image: Component<ImageProps> = (props) => {
 
   return (
     <div
-      {...attributes}
+      {...attrs}
       class={styles.root}
       classList={{
         [`${local.class}`]: !!local.class,

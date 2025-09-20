@@ -12,11 +12,11 @@ interface LoaderProps extends JSX.HTMLAttributes<HTMLDivElement> {
 
 const Loader: Component<LoaderProps> = (props) => {
   const platform = usePlatform();
-  const [local, attributes] = splitProps(props, ["class", "classList"]);
+  const [local, attrs] = splitProps(props, ["class", "classList"]);
 
   return (
     <div
-      {...attributes}
+      {...attrs}
       class={styles.root}
       classList={{
         [styles[`size--${props.size || "s"}`]]: true,

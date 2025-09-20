@@ -5,11 +5,11 @@ import { type Component, type JSX, splitProps } from "solid-js";
 interface DividerProps extends JSX.HTMLAttributes<HTMLHRElement> {}
 
 const Divider: Component<DividerProps> = (props) => {
-  const [local, attributes] = splitProps(props, ["class", "classList"]);
+  const [local, attrs] = splitProps(props, ["class", "classList"]);
 
   return (
     <hr
-      {...attributes}
+      {...attrs}
       class={styles.root}
       classList={{
         [`${local.class}`]: !!local.class,

@@ -5,6 +5,7 @@ export {
   Image,
   Cell,
   CellButton,
+  Div,
 } from "./components/Block";
 
 // Feedback

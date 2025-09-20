@@ -13,7 +13,7 @@ export interface PlaceholderProps
 }
 
 const Placeholder: Component<PlaceholderProps> = (props) => {
-  const [local, attributes] = splitProps(props, [
+  const [local, attrs] = splitProps(props, [
     "class",
     "classList",
     "children",
@@ -24,7 +24,7 @@ const Placeholder: Component<PlaceholderProps> = (props) => {
 
   return (
     <section
-      {...attributes}
+      {...attrs}
       class={styles.root}
       classList={{
         [`${local.class}`]: !!local.class,

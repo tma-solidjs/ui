@@ -8,12 +8,12 @@ export interface SubheadlineProps extends TypographyProps {
   level?: "1" | "2";
 }
 
-const defaultProps: SubheadlineProps = {
+const defaultProps: Partial<SubheadlineProps> = {
   level: "1",
 };
 
 const Subheadline: Component<SubheadlineProps> = (props) => {
-  const [local, attributes] = splitProps(mergeProps(defaultProps, props), [
+  const [local, attrs] = splitProps(mergeProps(defaultProps, props), [
     "level",
     "component",
     "class",
@@ -22,7 +22,7 @@ const Subheadline: Component<SubheadlineProps> = (props) => {
 
   return (
     <Typography
-      {...attributes}
+      {...attrs}
       classList={{
         [styles[`root--${local.level}`]]: true,
         [`${local.class}`]: !!local.class,

@@ -7,11 +7,11 @@ import { Typography, type TypographyProps } from "@/index";
 export interface TextProps extends Omit<TypographyProps, "plain"> {}
 
 const Text: Component<TextProps> = (props) => {
-  const [local, attributes] = splitProps(props, ["class", "classList"]);
+  const [local, attrs] = splitProps(props, ["class", "classList"]);
 
   return (
     <Typography
-      {...attributes}
+      {...attrs}
       class={styles.root}
       classList={{
         [`${local.class}`]: !!local.class,

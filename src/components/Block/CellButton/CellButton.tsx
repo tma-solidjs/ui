@@ -26,7 +26,7 @@ const defaultProps: Partial<CellButtonProps> = {
 
 const CellButton: Component<CellButtonProps> = (props) => {
   const platform = usePlatform();
-  const [local, attributes] = splitProps(mergeProps(defaultProps, props), [
+  const [local, attrs] = splitProps(mergeProps(defaultProps, props), [
     "class",
     "classList",
     "after",
@@ -40,7 +40,7 @@ const CellButton: Component<CellButtonProps> = (props) => {
 
   return (
     <Tappable
-      {...attributes}
+      {...attrs}
       class={styles.root}
       classList={{
         [styles[`root--${local.mode}`]]: true,

@@ -23,7 +23,7 @@ export interface ButtonProps extends JSX.HTMLAttributes<HTMLButtonElement> {
   component?: ValidComponent;
 }
 
-const defaultProps: ButtonProps = {
+const defaultProps: Partial<ButtonProps> = {
   size: "m",
   mode: "filled",
   stretched: false,
@@ -34,7 +34,7 @@ const defaultProps: ButtonProps = {
 const Button: Component<ButtonProps> = (props) => {
   const platform = usePlatform();
 
-  const [local, attributes] = splitProps(mergeProps(defaultProps, props), [
+  const [local, attrs] = splitProps(mergeProps(defaultProps, props), [
     "component",
     "before",
     "after",
@@ -49,8 +49,8 @@ const Button: Component<ButtonProps> = (props) => {
   ]);
 
   const handleOnClick = (e?: MouseEvent) => {
-    if (!e || local.loading || typeof attributes.onClick !== "function") return;
-    attributes.onClick(e as any);
+    if (!e || local.loading || typeof attrs.onClick !== "function") return;
+    attrs.onClick(e as any);
   };
 
   return (

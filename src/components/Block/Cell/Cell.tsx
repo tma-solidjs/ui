@@ -27,7 +27,7 @@ export interface CellProps
 
 const Cell: Component<CellProps> = (props) => {
   const platform = usePlatform();
-  const [local, attributes] = splitProps(props, [
+  const [local, attrs] = splitProps(props, [
     "class",
     "classList",
     "after",
@@ -58,7 +58,7 @@ const Cell: Component<CellProps> = (props) => {
 
   return (
     <Tappable
-      {...attributes}
+      {...attrs}
       class={styles.root}
       classList={{
         [styles["root--hovered"]]: local.hovered,

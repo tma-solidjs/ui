@@ -19,7 +19,7 @@ export interface TappableProps extends JSX.HTMLAttributes<HTMLElement> {
   disabled?: boolean;
 }
 
-const defaultProps: TappableProps = {
+const defaultProps: Partial<TappableProps> = {
   component: "div",
   interactiveAnimation: "background",
 };
@@ -28,7 +28,7 @@ const Tappable: Component<TappableProps> = (props) => {
   const platform = usePlatform();
   const { clicks, onPointerCancel, onPointerDown } = useRipple();
 
-  const [local, attributes] = splitProps(mergeProps(defaultProps, props), [
+  const [local, attrs] = splitProps(mergeProps(defaultProps, props), [
     "class",
     "interactiveAnimation",
     "component",
@@ -55,7 +55,7 @@ const Tappable: Component<TappableProps> = (props) => {
 
   return (
     <Dynamic
-      {...attributes}
+      {...attrs}
       class={styles.root}
       classList={{
         [styles[platform()]]: true,

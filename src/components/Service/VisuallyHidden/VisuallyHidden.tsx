@@ -24,7 +24,7 @@ export type VisuallyHiddenProps = (
   BaseProps;
 
 const VisuallyHidden: Component<VisuallyHiddenProps> = (props): JSX.Element => {
-  const [local, attributes] = splitProps(props, [
+  const [local, attrs] = splitProps(props, [
     "class",
     "classList",
     "component",
@@ -40,7 +40,7 @@ const VisuallyHidden: Component<VisuallyHiddenProps> = (props): JSX.Element => {
       }}
       disabled={local.disabled}
       component={local.component || "span"}
-      {...attributes}
+      {...attrs}
     />
   );
 };

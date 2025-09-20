@@ -7,15 +7,11 @@ import { Typography, type TypographyProps } from "@/index";
 export interface HeadlineProps extends TypographyProps {}
 
 const Headline: Component<HeadlineProps> = (props) => {
-  const [local, attributes] = splitProps(props, [
-    "class",
-    "classList",
-    "component",
-  ]);
+  const [local, attrs] = splitProps(props, ["class", "classList", "component"]);
 
   return (
     <Typography
-      {...attributes}
+      {...attrs}
       class={styles.root}
       classList={{
         [`${local.class}`]: !!local.class,
