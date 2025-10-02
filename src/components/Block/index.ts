@@ -4,3 +4,6 @@ export { default as Placeholder } from "./Placeholder/Placeholder";
 export { default as Cell } from "./Cell/Cell";
 export { default as CellButton } from "./CellButton/CellButton";
 export { default as Div } from "./Div/Div";
+export { default as Banner } from "./Banner/Banner";
+export { default as Section } from "./Section/Section";
+export { default as List } from "./List/List";

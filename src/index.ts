@@ -1,4 +1,3 @@
-// Block
 export {
   Avatar,
   Placeholder,
@@ -6,18 +5,15 @@ export {
   Cell,
   CellButton,
   Div,
+  Banner,
+  Section,
+  List,
 } from "./components/Block";
 
-// Feedback
 export { Loader, Ripple, Skeleton } from "./components/Feedback";
 
-// Form
 export { Button, Switch } from "./components/Form";
 
-// Misc
-export { Divider } from "./components/Misc";
-
-// Service
 export {
   NotificationProvider,
   Root,
@@ -25,7 +21,6 @@ export {
   VisuallyHidden,
 } from "./components/Service";
 
-// Typography
 export {
   Typography,
   Title,
@@ -38,5 +33,6 @@ export {
   type TypographyProps,
 } from "./components/Typography";
 
-// Hooks
+export { Divider } from "./components/Misc";
+
 export { usePlatform, useRipple } from "./hooks";
